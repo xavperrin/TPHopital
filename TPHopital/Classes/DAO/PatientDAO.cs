@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
+
 
 namespace TPHopital.Classes.DAO
 {
@@ -12,6 +11,16 @@ namespace TPHopital.Classes.DAO
         private SqlCommand updateCmd;
         private SqlCommand deleteCmd;
         private SqlConnection connection;
+
+        public PatientDAO()
+        {
+            connection = Connection.Instance;
+            createCmd = new SqlCommand("INSERT INTO Client (nom,prenom) values(@nom,@prenom)", connection);
+            retrieveCmd = new SqlCommand("SELECT * FROM Client where nom like @search OR prenom like @search", connection);
+            updateCmd = new SqlCommand("UPDATE client SET nom='@nom', prenom='@prenom', tel='@tel' WHERE id=@id");
+            deleteCmd = new SqlCommand("DELETE FROM client WHERE id=@id ");
+        }
+
         public void Create(Patient patient)
         {
             throw new NotImplementedException();
