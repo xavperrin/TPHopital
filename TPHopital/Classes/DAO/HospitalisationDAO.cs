@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace TPHopital.Classes.DAO
 {
-    class ConsultationDAO : IDAO<Consultation, Int32>
+    class HospitalisationDAO : IDAO<Hospitalisation, Int32>
     {
-
         private SqlCommand createCmd;
         private SqlCommand retrieveCmd;
         private SqlCommand updateCmd;
         private SqlCommand deleteCmd;
         private SqlConnection connection;
-
-        public void Create(Consultation consultation)
+        public void Create(Hospitalisation hospitalisation)
         {
             throw new NotImplementedException();
         }
@@ -24,12 +22,12 @@ namespace TPHopital.Classes.DAO
             throw new NotImplementedException();
         }
 
-        public Consultation Retrieve(int id)
+        public Hospitalisation Retrieve(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Consultation consultation, int id)
+        public void Update(Hospitalisation hospitalisation, int id)
         {
             throw new NotImplementedException();
         }

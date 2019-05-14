@@ -6,5 +6,6 @@ namespace TPHopital.Classes
 {
     class Type_Consultation
     {
+
     }
 }
