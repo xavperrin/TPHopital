@@ -28,7 +28,7 @@ namespace TPHopital.Classes
         public string NomPatient { get => nomPatient; set => nomPatient = value; }
         public string PrenomPatient { get => prenomPatient; set => prenomPatient = value; }
         public DateTime DateNaissance { get => dateNaissance; set => dateNaissance = value; }
-        public string Sexe { get => Sexe; set => Sexe = value; }
+        public string Sexe { get => sexe; set => sexe = value; }
         public string Adresse { get => adresse; set => adresse = value; }
         public string SituationFamiliale { get => situationFamiliale; set => situationFamiliale = value; }
         public string AssuranceMedicale { get => assuranceMedicale; set => assuranceMedicale = value; }
