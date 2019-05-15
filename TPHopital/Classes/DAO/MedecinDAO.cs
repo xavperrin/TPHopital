@@ -28,7 +28,7 @@ namespace TPHopital.Classes.DAO
         {
             createCmd.Parameters.Add(new SqlParameter("@nom", medecin.Nom_medecin));
             createCmd.Parameters.Add(new SqlParameter("@prenom", medecin.Prenom_medecin));
-            createCmd.Parameters.Add(new SqlParameter("@tel", medecin.Tel));
+            createCmd.Parameters.Add(new SqlParameter("@tel", medecin.Tel_medecin));
             connection.Open();
 
             if (createCmd.ExecuteNonQuery() > 0)
@@ -71,12 +71,10 @@ namespace TPHopital.Classes.DAO
 
             if (reader.Read())
             {
-
-               
                 medecin.Id_medecin = reader.GetInt32(0);
                 medecin.Nom_medecin = reader.GetString(1);
                 medecin.Prenom_medecin = reader.GetString(2);
-                medecin.Tel = reader.GetInt32(3);
+                medecin.Tel_medecin = reader.GetInt32(3);
             }
 
             reader.Close();
@@ -90,7 +88,17 @@ namespace TPHopital.Classes.DAO
 
         public void Update(Medecin medecin, int id)
         {
-            throw new NotImplementedException();
+
+            updateCmd.Parameters.Add(new SqlParameter("@nom", medecin.Nom_medecin));
+            updateCmd.Parameters.Add(new SqlParameter("@prenom", medecin.Prenom_medecin));
+            updateCmd.Parameters.Add(new SqlParameter("@tel", medecin.Tel_medecin));
+
+            updateCmd.Parameters.Add(new SqlParameter("@id", id));
+
+            Connection.Instance.Open();
+            updateCmd.ExecuteNonQuery();
+            updateCmd.Dispose();
+            connection.Close();
         }
 
        
