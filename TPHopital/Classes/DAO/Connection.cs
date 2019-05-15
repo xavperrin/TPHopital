@@ -14,7 +14,7 @@ namespace TPHopital.Classes.DAO
                 lock (_lock)
                 {
                     if (instance == null)
-                        instance = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=HopitalDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                        instance = new SqlConnection(@"Data Source=(localDb)\HopitalDB;Integrated Security=True");
                     return instance;
                 }
             }
