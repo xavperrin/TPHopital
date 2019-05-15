@@ -95,7 +95,7 @@ namespace TPHopital.Classes.DAO
 
             updateCmd.Parameters.Add(new SqlParameter("@id", id));
 
-            Connection.Instance.Open();
+            connection.Open();
             updateCmd.ExecuteNonQuery();
             updateCmd.Dispose();
             connection.Close();
