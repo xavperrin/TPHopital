@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TPHopital.Classes.Traitements
 {
-    class Examen_Radiologique : Traitement 
+    public class Examen_Radiologique : Traitement 
     {
         private int designation;
         private string resultat_examen;

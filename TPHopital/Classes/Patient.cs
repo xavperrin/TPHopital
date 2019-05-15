@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TPHopital.Classes
 {
-    class Patient
+    public class Patient
 
     {
         private int id_Patient;
@@ -21,6 +21,8 @@ namespace TPHopital.Classes
         private string nomMere;
         private string nom_P_a_prevenir;
         private int Tel_P_a_prevenir;
+
+        
 
         public int Id_Patient { get => id_Patient; set => id_Patient = value; }
         public string NomPatient { get => nomPatient; set => nomPatient = value; }

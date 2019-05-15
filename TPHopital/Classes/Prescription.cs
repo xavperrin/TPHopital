@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TPHopital.Classes
 {
-    class Prescription
+    public class Prescription
     {
     }
 }

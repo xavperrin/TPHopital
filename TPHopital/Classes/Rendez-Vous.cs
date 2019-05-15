@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TPHopital.Classes
 {
-    class Rendez_Vous
+    public class Rendez_Vous
     {
         private int codeRDV;
         private string medecin;
