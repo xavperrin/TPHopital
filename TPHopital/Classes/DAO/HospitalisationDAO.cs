@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TPHopital.Classes.DAO
 {
-    class HospitalisationDAO : IDAO<Hospitalisation, Int32>
+    public class HospitalisationDAO : IDAO<Hospitalisation, Int32>
     {
         private SqlCommand createCmd;
         private SqlCommand retrieveCmd;

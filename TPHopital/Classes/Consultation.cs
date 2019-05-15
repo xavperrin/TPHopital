@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TPHopital.Classes
 {
-    class Consultation
+    public class Consultation
     {
         private int id_consultation;
         private DateTime date_consultation;

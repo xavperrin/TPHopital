@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TPHopital.Classes
 {
-   abstract  class Traitement
+   public abstract  class Traitement
     {
         private int id;
         private DateTime date_traitement;

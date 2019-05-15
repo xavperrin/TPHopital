@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace TPHopital.Classes.DAO
 {
-    class ConsultationDAO : IDAO<Consultation, Int32>
+    public class ConsultationDAO : IDAO<Consultation, int>
     {
 
         private SqlCommand createCmd;

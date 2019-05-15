@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace TPHopital.Classes.DAO
 {
-    class PatientDAO : IDAO<Patient, Int32>
+    public class PatientDAO : IDAO<Patient, Int32>
     {
         private SqlCommand createCmd;
         private SqlCommand retrieveCmd;
@@ -17,8 +17,8 @@ namespace TPHopital.Classes.DAO
             connection = Connection.Instance;
             createCmd = new SqlCommand("INSERT INTO Patient (nom, prenom, date_naissance, sexe, adresse, situation_familiale) values(@nom, @prenom, @date_naissance, @sexe, @adresse, @situation_familiale)", connection);
             retrieveCmd = new SqlCommand("SELECT * FROM Patient where nom like @search OR prenom like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Patient SET nom='@nom', prenom='@prenom', tel='@tel' WHERE id=@id");
-            deleteCmd = new SqlCommand("DELETE FROM Patient WHERE id=@id ");
+            updateCmd = new SqlCommand("UPDATE Patient SET nom='@nom', prenom='@prenom', tel='@tel' WHERE id=@id", connection);
+            deleteCmd = new SqlCommand("DELETE FROM Patient WHERE id=@id ", connection);
         }
 
         public void Create(Patient patient)

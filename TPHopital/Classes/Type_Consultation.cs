@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TPHopital.Classes
 {
-    class Type_Consultation
+    public class Type_Consultation
     {
 
     }
