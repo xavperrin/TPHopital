@@ -42,6 +42,7 @@ namespace TPHopital.Classes.DAO
             {
                 Console.WriteLine("Insertion effecutée");
             }
+            
 
             createCmd.Dispose();
             connection.Close();
@@ -60,6 +61,11 @@ namespace TPHopital.Classes.DAO
 
             deleteCmd.Dispose();
             connection.Close();
+        }
+
+        public List<Consultation> ListAll()
+        {
+            throw new NotImplementedException();
         }
 
         public Consultation Retrieve(int id)
