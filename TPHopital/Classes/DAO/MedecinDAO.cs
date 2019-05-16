@@ -5,15 +5,15 @@ using System.Text;
 
 namespace TPHopital.Classes.DAO
 {
-    public class MedecinDAO :IDAO<Medecin, int>
+    public class MedecinDAO : IDAO<Medecin, Int32>
     {
         private SqlCommand createCmd;
         private SqlCommand retrieveCmd;
         private SqlCommand updateCmd;
         private SqlCommand deleteCmd;
+        private SqlCommand listAllCmd;
+
         private SqlConnection connection;
-
-
 
         public MedecinDAO()
         {
@@ -22,6 +22,7 @@ namespace TPHopital.Classes.DAO
             retrieveCmd = new SqlCommand("SELECT * FROM Medecin where id_medecin like @search", connection);
             updateCmd = new SqlCommand("UPDATE Medecin SET nom_medecin='@nom', prenom_medecin='@prenom', tel_medecin='@tel' WHERE id=@id", connection);
             deleteCmd = new SqlCommand("DELETE FROM Medecin WHERE id_medecin=@id ", connection);
+            listAllCmd = new SqlCommand("SELECT * FROM Medecin", connection);
         }
 
         public void Create(Medecin medecin)
@@ -55,7 +56,7 @@ namespace TPHopital.Classes.DAO
             deleteCmd.Dispose();
             connection.Close();
 
-            
+
         }
 
         public Medecin Retrieve(int id)
@@ -67,7 +68,7 @@ namespace TPHopital.Classes.DAO
             connection.Open();
 
 
-            SqlDataReader reader =retrieveCmd.ExecuteReader();
+            SqlDataReader reader = retrieveCmd.ExecuteReader();
 
             if (reader.Read())
             {
@@ -83,7 +84,7 @@ namespace TPHopital.Classes.DAO
 
             return medecin;
 
-           
+
         }
 
         public void Update(Medecin medecin, int id)
@@ -101,6 +102,30 @@ namespace TPHopital.Classes.DAO
             connection.Close();
         }
 
-       
+        public List<Medecin> ListAll()
+        {
+            List<Medecin> listMedecin = new List<Medecin>();
+
+            connection.Open();
+
+            SqlDataReader reader = listAllCmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listMedecin.Add(new Medecin
+                {
+                    Id_medecin = reader.GetInt32(0),
+                    Nom_medecin = reader.GetString(1),
+                    Prenom_medecin = reader.GetString(2),
+                    Tel_medecin = reader.GetInt32(3)
+                });
+            }
+
+            reader.Close();
+            retrieveCmd.Dispose();
+            connection.Close();
+
+            return listMedecin;
+        }
     }
 }

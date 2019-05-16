@@ -11,7 +11,9 @@ namespace TPHopital.Classes.DAO
         private SqlCommand retrieveCmd;
         private SqlCommand updateCmd;
         private SqlCommand deleteCmd;
+        private SqlCommand listAllCmd;
         private SqlConnection connection;
+
         public void Create(Facture facture)
         {
             throw new NotImplementedException();
@@ -21,13 +23,18 @@ namespace TPHopital.Classes.DAO
         {
             throw new NotImplementedException();
         }
-
+        
         public Facture Retrieve(int id)
         {
             throw new NotImplementedException();
         }
 
         public void Update(Facture facture, int id)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public List<Facture> ListAll()
         {
             throw new NotImplementedException();
         }
