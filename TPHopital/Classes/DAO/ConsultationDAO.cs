@@ -73,7 +73,6 @@ namespace TPHopital.Classes.DAO
 
             connection.Open();
 
-
             SqlDataReader reader = retrieveCmd.ExecuteReader();
 
             if (reader.Read())
