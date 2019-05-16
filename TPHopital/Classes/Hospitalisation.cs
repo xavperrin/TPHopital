@@ -21,6 +21,8 @@ namespace TPHopital.Classes
         private string resultat_sortie;
         private DateTime date_deces;
         private string motif_deces;
+        private int patient_id;
+        private int traitement_id;
 
         public int Id_admission { get => id_admission; set => id_admission = value; }
         public DateTime Date_admission { get => date_admission; set => date_admission = value; }
@@ -37,5 +39,7 @@ namespace TPHopital.Classes
         public string Resultat_sortie { get => resultat_sortie; set => resultat_sortie = value; }
         public DateTime Date_deces { get => date_deces; set => date_deces = value; }
         public string Motif_deces { get => motif_deces; set => motif_deces = value; }
+        public int Patient_id { get => patient_id; set => patient_id = value; }
+        public int Traitement_id { get => traitement_id; set => traitement_id = value; }
     }
 }
