@@ -16,17 +16,17 @@ namespace TPHopital.Classes.DAO
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public new void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Examen_Biologique> ListAll()
+        public new List<Examen_Biologique> ListAll()
         {
             throw new NotImplementedException();
         }
 
-        public Examen_Biologique Retrieve(int id)
+        public new Examen_Biologique Retrieve(int id)
         {
             throw new NotImplementedException();
         }
