@@ -42,7 +42,6 @@ CREATE TABLE Medecin (
 	Nom_Medecin VARCHAR(50) NOT NULL,
 	Prenom_Medecin VARCHAR(50) NOT NULL,
 	Tel_Medecin INT NOT NULL,
-
 )
 
 CREATE TABLE Consultation (
