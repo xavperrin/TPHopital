@@ -6,11 +6,11 @@ namespace TPHopital.Classes.Traitements
 {
     public class Examen_Radiologique : Traitement 
     {
-        private int designation;
+        private string designation;
         private string resultat_examen;
         private string image;
 
-        public int Designation { get => designation; set => designation = value; }
+        public string Designation { get => designation; set => designation = value; }
         public string Resultat_examen { get => resultat_examen; set => resultat_examen = value; }
         public string Image { get => image; set => image = value; }
     }

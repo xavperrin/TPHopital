@@ -6,13 +6,14 @@ namespace TPHopital.Classes.DAO
 {
     abstract class TraitementDAO : IDAO<Traitement, Int32>
     {
-        private SqlCommand createCmd;
-        private SqlCommand retrieveCmd;
-        private SqlCommand updateCmd;
-        private SqlCommand deleteCmd;
-        private SqlConnection connection;
-        private SqlCommand retrieveAll;
+        protected SqlCommand createCmd;
+        protected SqlCommand retrieveCmd;
+        protected SqlCommand updateCmd;
+        protected SqlCommand deleteCmd;
+        protected SqlConnection connection;
+        protected SqlCommand listAllCmd;
         
+
 
 
         public TraitementDAO()

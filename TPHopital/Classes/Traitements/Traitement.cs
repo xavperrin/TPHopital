@@ -6,15 +6,15 @@ namespace TPHopital.Classes
 {
    public abstract  class Traitement
     {
-        private int id;
-        private DateTime date_traitement;
-        private decimal prix_traitement;
-        private int id_facture;
+        protected int id_traitement;
+        protected DateTime date_traitement;
+        protected decimal prix_traitement;
+        protected int facture_id;
 
 
-        protected int Id { get => id; set => id = value; }
-        protected DateTime Date_traitement { get => date_traitement; set => date_traitement = value; }
-        protected decimal Prix_traitement { get => prix_traitement; set => prix_traitement = value; }
-        protected int Id_facture { get => id_facture; set => id_facture = value; }
+        public int Id_traitement { get => id_traitement; set => id_traitement = value; }
+        public DateTime Date_traitement { get => date_traitement; set => date_traitement = value; }
+        public decimal Prix_traitement { get => prix_traitement; set => prix_traitement = value; }
+        public int Facture_id { get => facture_id; set => facture_id = value; }
     }
 }
