@@ -36,7 +36,7 @@ namespace TPHopital.Classes.DAO
             connection.Close();
         }
 
-        public new void Update(Chirurgie chirurgie, int id)
+        public void Update(Chirurgie chirurgie, int id)
         {
             updateCmd.Parameters.Add(new SqlParameter("@date_traitement", chirurgie.Date_traitement));
             updateCmd.Parameters.Add(new SqlParameter("@prix", chirurgie.Prix_traitement));

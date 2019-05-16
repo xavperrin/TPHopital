@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace TPHopital.Classes.DAO
 {
-    abstract class TraitementDAO:IDAO<Traitement,Int32>
+    public abstract class TraitementDAO : IDAO<Traitement, int>
     {
         protected SqlCommand createCmd;
         protected SqlCommand retrieveCmd;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TPHopital.Classes.Facades
 {
-    class FacadeUsager
+    public class FacadeUsager
     {
     }
 }
