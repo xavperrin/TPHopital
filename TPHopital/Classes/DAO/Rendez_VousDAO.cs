@@ -27,7 +27,7 @@ namespace TPHopital.Classes.DAO
         {
             createCmd.Parameters.Add(new SqlParameter("@codeRDV", r.CodeRDV));
             createCmd.Parameters.Add(new SqlParameter("@medecin", r.Medecin));
-            createCmd.Parameters.Add(new SqlParameter("@date_RDV", r.Date1));
+            createCmd.Parameters.Add(new SqlParameter("@date_RDV", r.Date));
             createCmd.Parameters.Add(new SqlParameter("@service", r.Status));
             createCmd.Parameters.Add(new SqlParameter("@patient_ID", r.Id_patient));
 
@@ -53,7 +53,7 @@ namespace TPHopital.Classes.DAO
             {
                 rdv.CodeRDV = reader.GetInt32(0);
                 rdv.Medecin = reader.GetString(1);
-                rdv.Date1 = reader.GetDateTime(2);
+                rdv.Date = reader.GetDateTime(2);
                 rdv.Status = (ServiceStatus)reader.GetInt32(3);
                 rdv.Id_patient = reader.GetInt32(4);
             }
@@ -68,7 +68,7 @@ namespace TPHopital.Classes.DAO
         public void Update(Rendez_Vous rdv, int codeRDV)
         {
             updateCmd.Parameters.Add(new SqlParameter("@medecin", rdv.Medecin));
-            updateCmd.Parameters.Add(new SqlParameter("@date_RDV", rdv.Date1));
+            updateCmd.Parameters.Add(new SqlParameter("@date_RDV", rdv.Date));
             updateCmd.Parameters.Add(new SqlParameter("@service", rdv.Status));
             updateCmd.Parameters.Add(new SqlParameter("@patient_ID", rdv.Id_patient));
 
@@ -107,7 +107,7 @@ namespace TPHopital.Classes.DAO
                 {
                     CodeRDV = reader.GetInt32(0),
                     Medecin = reader.GetString(1),
-                    Date1 = reader.GetDateTime(2),
+                    Date = reader.GetDateTime(2),
                     Status = (ServiceStatus)reader.GetInt32(3),
                     Id_patient = reader.GetInt32(4)
                 });

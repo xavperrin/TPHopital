@@ -17,7 +17,7 @@ namespace TPHopital.Classes.DAO
         private readonly string COLUMNS="date_admission, type_admission, motif_admission, medecin_traitant, nom_accompagnant," +
             " prenom_accompagnant, lien_parente, date_entreeAcc, date_sortieAcc, motif_sortie, resultat_sortie, date_deces," +
             " motif_deces, patient_id, traitement_id";
-        private readonly string TABLE;
+        private readonly string TABLE="Hospitalisation";
 
 
 
