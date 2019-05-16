@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 
@@ -10,6 +11,7 @@ namespace TPHopital.Classes.DAO
         private SqlCommand retrieveCmd;
         private SqlCommand updateCmd;
         private SqlCommand deleteCmd;
+        private SqlCommand listAllCmd;
         private SqlConnection connection;
 
         public PatientDAO()
@@ -19,6 +21,7 @@ namespace TPHopital.Classes.DAO
             retrieveCmd = new SqlCommand("SELECT * FROM Patient where nom like @search OR prenom like @search", connection);
             updateCmd = new SqlCommand("UPDATE Patient SET nom='@nom', prenom='@prenom', tel='@tel' WHERE id=@id", connection);
             deleteCmd = new SqlCommand("DELETE FROM Patient WHERE id=@id ", connection);
+            listAllCmd = new SqlCommand("SELECT * FROM Patient", connection);
         }
 
         public void Create(Patient patient)
@@ -53,6 +56,11 @@ namespace TPHopital.Classes.DAO
         }
 
         public void Update(Patient patient, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Patient> ListAll()
         {
             throw new NotImplementedException();
         }

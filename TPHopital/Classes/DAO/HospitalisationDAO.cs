@@ -11,7 +11,9 @@ namespace TPHopital.Classes.DAO
         private SqlCommand retrieveCmd;
         private SqlCommand updateCmd;
         private SqlCommand deleteCmd;
+        private SqlCommand listAllCmd;
         private SqlConnection connection;
+
         public void Create(Hospitalisation hospitalisation)
         {
             throw new NotImplementedException();
@@ -28,6 +30,11 @@ namespace TPHopital.Classes.DAO
         }
 
         public void Update(Hospitalisation hospitalisation, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Hospitalisation> ListAll()
         {
             throw new NotImplementedException();
         }

@@ -5,13 +5,14 @@ using System.Data.SqlClient;
 
 namespace TPHopital.Classes.DAO
 {
-    public class ConsultationDAO : IDAO<Consultation, int>
+    public class ConsultationDAO : IDAO<Consultation, Int32>
     {
 
         private SqlCommand createCmd;
         private SqlCommand retrieveCmd;
         private SqlCommand updateCmd;
         private SqlCommand deleteCmd;
+        private SqlCommand listAllCmd;
         private SqlConnection connection;
 
         public ConsultationDAO()
@@ -21,6 +22,7 @@ namespace TPHopital.Classes.DAO
                                       " rdv_code, prescription_id, medecin_id) values(@date, @synthese," +
                                       " @type, @rdv_code, @prescription_id, @medecin_id)", connection);
             retrieveCmd = new SqlCommand("SELECT * FROM Consultation where id_consultation like @search", connection);
+            listAllCmd = new SqlCommand("SELECT * FROM Consultation", connection);
             updateCmd = new SqlCommand("UPDATE Consultation SET date_consultation='@date'," +
                                       " synthese='@synthese', type_consultation_id='@type', rdv_code='@rdv_code'," +
                                       " prescription_id='@prescription_id', medecin_id='@medecin_id' WHERE id=@id", connection);
@@ -61,7 +63,7 @@ namespace TPHopital.Classes.DAO
             deleteCmd.Dispose();
             connection.Close();
         }
-
+        
         public Consultation Retrieve(int id)
         {
             Consultation consultation = new Consultation();
@@ -103,6 +105,32 @@ namespace TPHopital.Classes.DAO
             updateCmd.ExecuteNonQuery();
             updateCmd.Dispose();
             connection.Close();
+        }
+
+        public List<Consultation> ListAll()
+        {
+            List<Consultation> listConsultation = new List<Consultation>();
+
+            connection.Open();
+
+            SqlDataReader reader = listAllCmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                listConsultation.Add(new Consultation
+                {
+                    Id_consultation = reader.GetInt32(0),
+                    Date_consultation = reader.GetDateTime(1),
+                    Synthese = reader.GetString(2),
+                    Type_consultation_id = reader.GetInt32(3)
+                });
+            }
+
+            reader.Close();
+            retrieveCmd.Dispose();
+            connection.Close();
+
+            return listConsultation;
         }
     }
 }
