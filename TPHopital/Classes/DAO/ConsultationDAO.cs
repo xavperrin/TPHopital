@@ -64,16 +64,7 @@ namespace TPHopital.Classes.DAO
             deleteCmd.Dispose();
             connection.Close();
         }
-<<<<<<< HEAD
 
-        public List<Consultation> ListAll()
-        {
-            throw new NotImplementedException();
-        }
-
-=======
-        
->>>>>>> 601244bd53b7575a36218925069a54b21bd9275a
         public Consultation Retrieve(int id)
         {
             Consultation consultation = new Consultation();
