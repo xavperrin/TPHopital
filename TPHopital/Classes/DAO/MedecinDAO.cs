@@ -15,7 +15,7 @@ namespace TPHopital.Classes.DAO
 
 
 
-        public MedecinDAO()
+        public MedecinDAO() 
         {
             connection = Connection.Instance;
             createCmd = new SqlCommand("INSERT INTO Medecin (nom_medecin, prenom_medecin, tel_medecin) values(@nom, @prenom, @tel)", connection);
