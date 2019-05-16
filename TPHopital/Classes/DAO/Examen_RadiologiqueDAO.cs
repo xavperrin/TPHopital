@@ -11,10 +11,10 @@ namespace TPHopital.Classes.DAO
         public Examen_RadiologiqueDAO()
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO Traitement (date_traitement, prix_traitement, designation, Resultat_examen, image) values(@date, @prix, @designation, @resultat, @image)", connection);
-            retrieveCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image FROM Traitement where id_traitement like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Traitement SET date_traitement='@date', prix_traitement='@prix', designation='@designation', Resultat_examen='@resultat', image='@image' WHERE id=@id", connection);
-            listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image FROM Traitement", connection);
+            createCmd = new SqlCommand("INSERT INTO Traitement (date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id) values(@date, @prix, @designation, @resultat, @image, @facture_id )", connection);
+            retrieveCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id FROM Traitement where id_traitement like @search", connection);
+            updateCmd = new SqlCommand("UPDATE Traitement SET date_traitement='@date', prix_traitement='@prix', designation='@designation', Resultat_examen='@resultat', image='@image', facture_id='@facture_id' WHERE id=@id", connection);
+            listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id FROM Traitement", connection);
         }
 
         public void Create(Examen_Radiologique examen)
@@ -24,6 +24,7 @@ namespace TPHopital.Classes.DAO
             createCmd.Parameters.Add(new SqlParameter("@designation", examen.Designation));
             createCmd.Parameters.Add(new SqlParameter("@Resultat_examen", examen.Resultat_examen));
             createCmd.Parameters.Add(new SqlParameter("@image", examen.Image));
+            createCmd.Parameters.Add(new SqlParameter("@facture_id", examen.Facture_id));
 
             connection.Open();
 
@@ -43,6 +44,7 @@ namespace TPHopital.Classes.DAO
             updateCmd.Parameters.Add(new SqlParameter("@designation", examen.Designation));
             updateCmd.Parameters.Add(new SqlParameter("@resultat", examen.Resultat_examen));
             updateCmd.Parameters.Add(new SqlParameter("@image", examen.Image));
+            updateCmd.Parameters.Add(new SqlParameter("@facture_id", examen.Facture_id));
 
             updateCmd.Parameters.Add(new SqlParameter("@id", id));
 
@@ -70,7 +72,8 @@ namespace TPHopital.Classes.DAO
                     Prix_traitement = reader.GetDecimal(2),
                     Designation = reader.GetString(3),
                     Resultat_examen = reader.GetString(4),
-                    Image = reader.GetString(5)
+                    Image = reader.GetString(5),
+                    Facture_id = reader.GetInt32(6)
                 });
             }
 
@@ -101,6 +104,7 @@ namespace TPHopital.Classes.DAO
                 examen.Designation = reader.GetString(3);
                 examen.Resultat_examen = reader.GetString(4);
                 examen.Image = reader.GetString(5);
+                examen.Facture_id = reader.GetInt32(6);
             }
 
             reader.Close();

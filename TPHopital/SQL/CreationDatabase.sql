@@ -63,6 +63,7 @@ CREATE TABLE Traitement (
 	Image VARCHAR(50) NOT NULL,	
 	Chirugien VARCHAR(50) NOT NULL,
 	Anesthesiste VARCHAR(50) NOT NULL,
+	Facture_ID INT NOT NULL,
 )
 
 CREATE TABLE Hospitalisation (
