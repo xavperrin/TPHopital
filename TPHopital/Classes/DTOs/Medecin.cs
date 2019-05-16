@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TPHopital.Classes.DTOs;
 
 namespace TPHopital.Classes
 {
-    public class Medecin
+    public class Medecin : DTO
     {
 
         private int id_medecin;

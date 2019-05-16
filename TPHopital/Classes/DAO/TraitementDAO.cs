@@ -26,10 +26,8 @@ namespace TPHopital.Classes.DAO
             //retrieveAll = new SqlCommand("SELECT * FROM Traitement");
         }
 
-        public void Create(Traitement traitement)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Create(Traitement traitement);
+        
 
         public void Delete(int id)
         {
@@ -46,20 +44,13 @@ namespace TPHopital.Classes.DAO
             connection.Close();
         }
 
-        public List<Traitement> ListAll()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract List<Traitement> ListAll();
 
-        public Traitement Retrieve(int id)
-        {
 
-            throw new NotImplementedException();
-        }
+        public abstract Traitement Retrieve(int id);
 
-        public void Update(Traitement traitement, int id)
-        {
-            throw new NotImplementedException();
-        }
+
+        public abstract void Update(Traitement traitement, int id);
+       
     }
 }

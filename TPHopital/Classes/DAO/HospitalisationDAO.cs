@@ -27,7 +27,7 @@ namespace TPHopital.Classes.DAO
             createCmd = new SqlCommand("INSERT INTO "+TABLE+" ("+COLUMNS+") values(@date_admission, @type_admission, @motif_admission," +
                 " @medecin_traitant, @nom_accompagnant, @prenom_accompagnant, @lien_parente, @date_entreeAcc, @date_sortieAcc, @motif_sortie," +
                 " @resultat_sortie, @date_deces, @motif_deces, @patient_id, @traitement_id)", connection);
-            retrieveCmd = new SqlCommand("SELECT id_admission "+ COLUMNS + " FROM "+ TABLE + " where id_admission like @search", connection);
+            retrieveCmd = new SqlCommand("SELECT id_admission, "+ COLUMNS + " FROM "+ TABLE + " where id_admission like @search", connection);
             updateCmd = new SqlCommand("UPDATE " + TABLE + " SET date_admission='@date_admission', type_admission='@type_admission', motif_admission='@motif_admission'," +
                 " medecin_traitant='@medecin_traitant', nom_accompagnant='@nom_accompagnant', prenom_accompagnant='@prenom_accompagnant', lien_parente='@lien_parente'," +
                 " date_entreeAcc='@date_entreeAcc', date_sortieAcc='@date_sortieAcc', motif_sortie='@motif_sortie'," +
