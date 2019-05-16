@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TPHopital.Classes
+namespace TPHopital.Classes.DTOs
 {
-    public class Facture
+    public class Facture:DTO
     {
         private int id_facture;
         private DateTime date_facture;

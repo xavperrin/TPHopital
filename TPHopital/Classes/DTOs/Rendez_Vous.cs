@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TPHopital.Classes.DTOs;
 
 namespace TPHopital.Classes
 {
-    public class Rendez_Vous
+    public class Rendez_Vous :DTO
     {
         private int codeRDV;
         private string medecin;
@@ -34,7 +35,7 @@ namespace TPHopital.Classes
 
         public override string ToString()
         {
-            return "Rendez_Vous (Code RendezVous :" + CodeRDV + "Nom du Medecin:" + Medecin + " Id patient :" + Id_patient + " Date du Rdv:" + Date + " Service :" + Status + ")";
+            return "Rendez_Vous (Code Rendez-Vous :" + CodeRDV + "Nom du Medecin:" + Medecin + " Id patient :" + Id_patient + " Date du Rdv:" + Date + " Service :" + Status + ")";
         }
     }
 }

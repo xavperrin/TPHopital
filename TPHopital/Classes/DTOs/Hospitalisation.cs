@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TPHopital.Classes.DTOs;
 
 namespace TPHopital.Classes
 {
-    public class Hospitalisation
+    public class Hospitalisation:DTO
     {
         private int id_admission;
         private DateTime date_admission;

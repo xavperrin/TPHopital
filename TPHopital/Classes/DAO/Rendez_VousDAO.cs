@@ -14,22 +14,25 @@ namespace TPHopital.Classes.DAO
         private SqlCommand listAllCmd;
         private SqlConnection connection;
 
+        private string TABLE="Rendez_Vous";
+        private string COLUMNS = "codeRDV, medecin, date_RDV, service, patient_ID"; 
+
         public Rendez_VousDAO()
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO Rendez_Vous (codeRDV, medecin, date_RDV, service, patient_ID) values(@codeRDV, @medecin, @date_RDV, @service, @r.patient_ID)", connection);
-            retrieveCmd = new SqlCommand("SELECT * FROM Rendez_Vous where r.patient_ID like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Rendez_Vous SET codeRDV='@codeRDV', medecin='@medecin', date_RDV='@date_RDV', r.patient_ID='@r.patient_ID' WHERE r.patient_ID=@r.patient_ID", connection);
-            deleteCmd = new SqlCommand("DELETE FROM Rendez_Vous WHERE r.patient_ID=@r.patient_ID ", connection);
-            listAllCmd = new SqlCommand("SELECT * FROM Rendez_Vous", connection);
+            createCmd = new SqlCommand("INSERT INTO "+ TABLE + " (codeRDV, medecin, date_RDV, service, patient_ID) values(@codeRDV, @medecin, @date_RDV, @service, @r.patient_ID)", connection);
+            retrieveCmd = new SqlCommand("SELECT "+COLUMNS+" FROM "+TABLE+" WHERE patient_ID like @search", connection);
+            updateCmd = new SqlCommand("UPDATE " + TABLE + " SET codeRDV='@codeRDV', medecin='@medecin', date_RDV='@date_RDV', r.patient_ID='@r.patient_ID' WHERE r.patient_ID=@r.patient_ID", connection);
+            deleteCmd = new SqlCommand("DELETE FROM " + TABLE + " WHERE patient_ID=@patient_ID ", connection);
+            listAllCmd = new SqlCommand("SELECT " + COLUMNS + " FROM " + TABLE , connection);
         }
-        public void Create(Rendez_Vous r)
+        public void Create(Rendez_Vous rdv)
         {
-            createCmd.Parameters.Add(new SqlParameter("@codeRDV", r.CodeRDV));
-            createCmd.Parameters.Add(new SqlParameter("@medecin", r.Medecin));
-            createCmd.Parameters.Add(new SqlParameter("@date_RDV", r.Date));
-            createCmd.Parameters.Add(new SqlParameter("@service", r.Status));
-            createCmd.Parameters.Add(new SqlParameter("@patient_ID", r.Id_patient));
+            createCmd.Parameters.Add(new SqlParameter("@codeRDV", rdv.CodeRDV));
+            createCmd.Parameters.Add(new SqlParameter("@medecin", rdv.Medecin));
+            createCmd.Parameters.Add(new SqlParameter("@date_RDV", rdv.Date));
+            createCmd.Parameters.Add(new SqlParameter("@service", rdv.Status));
+            createCmd.Parameters.Add(new SqlParameter("@patient_ID", rdv.Id_patient));
 
             connection.Open();
 

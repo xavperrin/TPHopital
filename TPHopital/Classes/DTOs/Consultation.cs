@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TPHopital.Classes
+
+namespace TPHopital.Classes.DTOs
 {
-    public class Consultation
+    public class Consultation:DTO
     {
         private int id_consultation;
         private DateTime date_consultation;
