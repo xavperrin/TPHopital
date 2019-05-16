@@ -20,7 +20,7 @@ namespace TPHopital.Classes
         private string nomPere;
         private string nomMere;
         private string nom_P_a_prevenir;
-        private int Tel_P_a_prevenir;
+        private int tel_P_a_prevenir;
 
         
 
@@ -37,6 +37,6 @@ namespace TPHopital.Classes
         public string NomPere { get => nomPere; set => nomPere = value; }
         public string NomMere { get => nomMere; set => nomMere = value; }
         public string Nom_P_a_prevenir { get => nom_P_a_prevenir; set => nom_P_a_prevenir = value; }
-        public int Tel_P_a_prevenir1 { get => Tel_P_a_prevenir; set => Tel_P_a_prevenir = value; }
+        public int Tel_P_a_prevenir { get => tel_P_a_prevenir; set => tel_P_a_prevenir = value; }
     }
 }
