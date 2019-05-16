@@ -41,7 +41,7 @@ CREATE TABLE Medecin (
 	ID_Medecin INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	Nom_Medecin VARCHAR(50) NOT NULL,
 	Prenom_Medecin VARCHAR(50) NOT NULL,
-	Tel_Medecin INT NOT NULL,
+	Tel_Medecin VARCHAR(10) NOT NULL,
 )
 
 CREATE TABLE Consultation (
