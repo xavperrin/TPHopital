@@ -10,5 +10,6 @@ namespace TPHopital.Classes.DAO
         T Retrieve(ID id);
         void Update(T t, ID id);
         void Delete(ID id);
+        List<T> ListAll();
     }
 }
