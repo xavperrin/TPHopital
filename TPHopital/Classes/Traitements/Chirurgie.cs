@@ -9,7 +9,7 @@ namespace TPHopital.Classes.Traitements
         private string chirurgien;
         private string anesthesiste;
 
-        private string image;
+        
 
         public string Chirurgien { get => chirurgien; set => chirurgien = value; }
         public string Anesthesiste { get => anesthesiste; set => anesthesiste = value; }
