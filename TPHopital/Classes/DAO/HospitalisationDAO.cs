@@ -14,6 +14,15 @@ namespace TPHopital.Classes.DAO
         private SqlCommand listAllCmd;
         private SqlConnection connection;
 
+        public HospitalisationDAO()
+        {
+           connection = Connection.Instance;
+           createCmd="";
+           retrieveCmd="";
+           updateCmd="";
+           deleteCmd="";
+           listAllCmd="";
+        }
         public void Create(Hospitalisation hospitalisation)
         {
             throw new NotImplementedException();
