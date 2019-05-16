@@ -41,8 +41,7 @@ CREATE TABLE Medecin (
 	ID_Medecin INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	Nom_Medecin VARCHAR(50) NOT NULL,
 	Prenom_Medecin VARCHAR(50) NOT NULL,
-	Tel_Medecin INT NOT NULL,
-
+	Tel_Medecin VARCHAR(10) NOT NULL,
 )
 
 CREATE TABLE Consultation (
@@ -59,11 +58,12 @@ CREATE TABLE Traitement (
 	ID_Traitement INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	date_traitement INT NOT NULL, -- Durée de traitement
 	prix_traitement INT NOT NULL,	
-	Designation INT NOT NULL,
-	Resultat_examen INT NOT NULL,
+	Designation VARCHAR(50) NOT NULL,
+	Resultat_examen VARCHAR(50) NOT NULL,
 	Image VARCHAR(50) NOT NULL,	
 	Chirugien VARCHAR(50) NOT NULL,
 	Anesthesiste VARCHAR(50) NOT NULL,
+	Facture_ID INT NOT NULL,
 )
 
 CREATE TABLE Hospitalisation (
