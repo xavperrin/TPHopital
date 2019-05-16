@@ -17,9 +17,13 @@ namespace TPHopital.Classes.DAO
         public ConsultationDAO()
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO Consultation (date_consultation, synthese, type_consultation_id) values(@date, @synthese, @type)", connection);
+            createCmd = new SqlCommand("INSERT INTO Consultation (date_consultation, synthese, type_consultation_id," +
+                                      " rdv_code, prescription_id, medecin_id) values(@date, @synthese," +
+                                      " @type, @rdv_code, @prescription_id, @medecin_id)", connection);
             retrieveCmd = new SqlCommand("SELECT * FROM Consultation where id_consultation like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Consultation SET date_consultation='@date', synthese='@synthese', type_consultation_id='@type' WHERE id=@id", connection);
+            updateCmd = new SqlCommand("UPDATE Consultation SET date_consultation='@date'," +
+                                      " synthese='@synthese', type_consultation_id='@type', rdv_code='@rdv_code'," +
+                                      " prescription_id='@prescription_id', medecin_id='@medecin_id' WHERE id=@id", connection);
             deleteCmd = new SqlCommand("DELETE FROM Consultation WHERE id=@id ", connection);
         }
 
@@ -28,6 +32,10 @@ namespace TPHopital.Classes.DAO
             createCmd.Parameters.Add(new SqlParameter("@date", consultation.Date_consultation));
             createCmd.Parameters.Add(new SqlParameter("@synthese", consultation.Synthese));
             createCmd.Parameters.Add(new SqlParameter("@type", consultation.Type_consultation_id));
+            createCmd.Parameters.Add(new SqlParameter("@rdv_code", consultation.Rdv_code));
+            createCmd.Parameters.Add(new SqlParameter("@prescription_id", consultation.Prescription_id));
+            createCmd.Parameters.Add(new SqlParameter("@medecin_id", consultation.Medecin_id));
+
             connection.Open();
 
             if (createCmd.ExecuteNonQuery() > 0)
@@ -85,6 +93,9 @@ namespace TPHopital.Classes.DAO
             updateCmd.Parameters.Add(new SqlParameter("@date", consultation.Date_consultation));
             updateCmd.Parameters.Add(new SqlParameter("@synthese", consultation.Synthese));
             updateCmd.Parameters.Add(new SqlParameter("@type", consultation.Type_consultation_id));
+            updateCmd.Parameters.Add(new SqlParameter("@rdv_code", consultation.Rdv_code));
+            updateCmd.Parameters.Add(new SqlParameter("@prescription_id", consultation.Prescription_id));
+            updateCmd.Parameters.Add(new SqlParameter("@medecin_id", consultation.Medecin_id));
 
             updateCmd.Parameters.Add(new SqlParameter("@id", id));
 

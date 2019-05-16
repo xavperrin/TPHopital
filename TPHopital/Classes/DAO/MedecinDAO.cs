@@ -21,7 +21,7 @@ namespace TPHopital.Classes.DAO
             createCmd = new SqlCommand("INSERT INTO Medecin (nom_medecin, prenom_medecin, tel_medecin) values(@nom, @prenom, @tel)", connection);
             retrieveCmd = new SqlCommand("SELECT * FROM Medecin where id_medecin like @search", connection);
             updateCmd = new SqlCommand("UPDATE Medecin SET nom_medecin='@nom', prenom_medecin='@prenom', tel_medecin='@tel' WHERE id=@id", connection);
-            deleteCmd = new SqlCommand("DELETE FROM Medecin WHERE id=@id ", connection);
+            deleteCmd = new SqlCommand("DELETE FROM Medecin WHERE id_medecin=@id ", connection);
         }
 
         public void Create(Medecin medecin)
@@ -95,7 +95,7 @@ namespace TPHopital.Classes.DAO
 
             updateCmd.Parameters.Add(new SqlParameter("@id", id));
 
-            Connection.Instance.Open();
+            connection.Open();
             updateCmd.ExecuteNonQuery();
             updateCmd.Dispose();
             connection.Close();
