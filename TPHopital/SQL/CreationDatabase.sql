@@ -58,8 +58,8 @@ CREATE TABLE Traitement (
 	ID_Traitement INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	date_traitement INT NOT NULL, -- Durée de traitement
 	prix_traitement INT NOT NULL,	
-	Designation INT NOT NULL,
-	Resultat_examen INT NOT NULL,
+	Designation VARCHAR(50) NOT NULL,
+	Resultat_examen VARCHAR(50) NOT NULL,
 	Image VARCHAR(50) NOT NULL,	
 	Chirugien VARCHAR(50) NOT NULL,
 	Anesthesiste VARCHAR(50) NOT NULL,
