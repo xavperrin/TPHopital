@@ -65,6 +65,7 @@ namespace TPHopital.Classes.DAO
             connection.Close();
         }
 
+
         public Consultation Retrieve(int id)
         {
             Consultation consultation = new Consultation();
