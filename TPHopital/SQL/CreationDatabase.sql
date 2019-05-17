@@ -13,7 +13,7 @@ CREATE TABLE Patient (
 	Date_Naissance DATETIME NOT NULL,
 	Sexe VARCHAR(5) NOT NULL,
 	Adresse VARCHAR(100) NOT NULL,
-	SituationFamiliale VARCHAR(10) NOT NULL,
+	SituationFamiliale VARCHAR(20) NOT NULL,
 	AssuranceMedicale VARCHAR(50) NOT NULL,
 	CodeAssurance VARCHAR(13) NOT NULL,
 	Tel VARCHAR(10) NOT NULL,

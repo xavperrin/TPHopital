@@ -23,7 +23,7 @@ namespace TPHopital.Classes.DAO
             connection = Connection.Instance;
             createCmd = new SqlCommand("INSERT INTO Medecin ("+COLUMNS+") values(@nom, @prenom, @tel)", connection);
             retrieveCmd = new SqlCommand("SELECT id_medecin, " + COLUMNS + " FROM Medecin where id_medecin like @search", connection);
-            updateCmd = new SqlCommand("UPDATE "+ TABLE + " SET nom_medecin='@nom', prenom_medecin='@prenom', tel_medecin='@tel' WHERE id_medecin=@id", connection);
+            updateCmd = new SqlCommand("UPDATE "+ TABLE + " SET nom_medecin=@nom, prenom_medecin=@prenom, tel_medecin=@tel WHERE id_medecin=@id", connection);
             deleteCmd = new SqlCommand("DELETE FROM " + TABLE + " WHERE id_medecin=@id ", connection);
             listAllCmd = new SqlCommand("SELECT "+COLUMNS+ " FROM " + TABLE,  connection);
         }

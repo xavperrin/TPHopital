@@ -19,11 +19,11 @@ namespace TPHopital
             m.Tel = "4444545";
             m.Adresse = "2 rue de bouyaaa";
             m.DateNaissance = DateTime.Now;
-            m.Codeassurance = "";
-            m.NomMere = "";
-            m.NomPere = "";
+            m.Codeassurance = "1565";
+            m.NomMere = "zrge";
+            m.NomPere = "zrg";
             m.Sexe = "Homme";
-            m.SituationFamiliale = "Célibataire";
+            m.SituationFamiliale = "Célibatair";
             m.Tel_P_a_prevenir = "";
             m.Nom_P_a_prevenir = "";
             m.AssuranceMedicale = "";

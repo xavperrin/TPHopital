@@ -20,7 +20,7 @@ namespace TPHopital.Classes.DAO
             connection = Connection.Instance;
             createCmd = new SqlCommand("INSERT INTO Facture (date_facture, total, Admission_ID) values(@date, @total, @idAdmission)", connection);
             retrieveCmd = new SqlCommand("SELECT * FROM Facture where id_facture like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Facture SET date_facture='@date', total='@total', Admission_ID='@idAdmission' WHERE id=@id", connection);
+            updateCmd = new SqlCommand("UPDATE Facture SET date_facture=@date, total=@total, Admission_ID=@idAdmission WHERE id=@id", connection);
             deleteCmd = new SqlCommand("DELETE FROM Facture WHERE id=@id ", connection);
             listAllCmd = new SqlCommand("SELECT * FROM Facture", connection);
         }

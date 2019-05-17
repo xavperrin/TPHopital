@@ -22,17 +22,20 @@ namespace TPHopital.Classes.DAO
         public HospitalisationDAO()
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO " + TABLE + " (" + COLUMNS + ") values(@date_admission, @type_admission, @motif_admission," +
+            string create = "INSERT INTO " + TABLE + " (" + COLUMNS + ") values(@date_admission, @type_admission, @motif_admission," +
                 " @medecin_traitant, @nom_accompagnant, @prenom_accompagnant, @lien_parente, @date_entreeAcc, @date_sortieAcc, @motif_sortie," +
-                " @resultat_sortie, @date_deces, @motif_deces, @patient_id, @traitement_id)", connection);
+                " @resultat_sortie, @date_deces, @motif_deces, @patient_id, @traitement_id)";
+            createCmd = new SqlCommand(create, connection);
             retrieveCmd = new SqlCommand("SELECT id_admission, " + COLUMNS + " FROM " + TABLE + " where id_admission like @search", connection);
-            updateCmd = new SqlCommand("UPDATE " + TABLE + " SET date_admission='@date_admission', type_admission='@type_admission', motif_admission='@motif_admission'," +
-                " medecin_traitant='@medecin_traitant', nom_accompagnant='@nom_accompagnant', prenom_accompagnant='@prenom_accompagnant', lien_parente='@lien_parente'," +
-                " date_entreeAcc='@date_entreeAcc', date_sortieAcc='@date_sortieAcc', motif_sortie='@motif_sortie'," +
-                " resultat_sortie='@resultat_sortie', date_deces='@date_deces'", connection);
+            string update = "UPDATE " + TABLE + " SET date_admission=@date_admission, type_admission=@type_admission, motif_admission=@motif_admission," +
+                " medecin_traitant=@medecin_traitant, nom_accompagnant=@nom_accompagnant, prenom_accompagnant=@prenom_accompagnant, lien_parente=@lien_parente," +
+                " date_entreeAcc=@date_entreeAcc, date_sortieAcc=@date_sortieAcc, motif_sortie=@motif_sortie," +
+                " resultat_sortie=@resultat_sortie, date_deces=@date_deces";
+            updateCmd = new SqlCommand(update, connection);
             deleteCmd = new SqlCommand("DELETE FROM " + TABLE + " WHERE id_admission=@id ", connection);
             listAllCmd = new SqlCommand("SELECT id_admission " + COLUMNS + " FROM " + TABLE, connection);
         }
+
         public void Create(Hospitalisation hospitalisation)
         {
             createCmd.Parameters.Add(new SqlParameter("@date_admission", hospitalisation.Date_admission));
@@ -58,7 +61,6 @@ namespace TPHopital.Classes.DAO
             createCmd.Parameters.Add(new SqlParameter("@motif_deces", hospitalisation.Motif_deces));
             createCmd.Parameters.Add(new SqlParameter("@patient_id", hospitalisation.Patient_id));
             createCmd.Parameters.Add(new SqlParameter("@traitement_id", hospitalisation.Traitement_id));
-
 
             connection.Open();
 
@@ -119,7 +121,6 @@ namespace TPHopital.Classes.DAO
                 hospitalisation.Motif_deces = reader.GetString(14);
                 hospitalisation.Patient_id = reader.GetInt32(15);
                 hospitalisation.Traitement_id = reader.GetInt32(16);
-
             }
             else
                 throw new ObjectNotFoundException("Aucun hospitalisation n'a été trouvé avec l'identifiant " + id);
@@ -163,7 +164,6 @@ namespace TPHopital.Classes.DAO
 
             if (updateCmd.ExecuteNonQuery() <= 0)
                 throw new ObjectNotFoundException("Aucune hospitalisation n'a été trouvée avec l'identifiant " + id + ". Elle ne peut pas etre mise à jour.");
-
 
 
             updateCmd.Dispose();

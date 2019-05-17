@@ -19,7 +19,7 @@ namespace TPHopital.Classes.DAO
             connection = Connection.Instance;
             createCmd = new SqlCommand("INSERT INTO Type_Consultation (type_consultation, prix_consultation) values(@type, @date)", connection);
             retrieveCmd = new SqlCommand("SELECT * FROM Type_Consultation where id_type_consultation like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Type_Consultation SET type_consultation='@type', prix_consultation='@prix' WHERE id_type_consultation=@id", connection);
+            updateCmd = new SqlCommand("UPDATE Type_Consultation SET type_consultation=@type, prix_consultation=@prix WHERE id_type_consultation=@id", connection);
             deleteCmd = new SqlCommand("DELETE FROM Type_Consultation WHERE id_type_consultation=@id ", connection);
             listAllCmd = new SqlCommand("SELECT * FROM Type_Consultation", connection);
         }

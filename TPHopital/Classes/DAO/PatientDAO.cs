@@ -20,7 +20,7 @@ namespace TPHopital.Classes.DAO
             createCmd = new SqlCommand("INSERT INTO Patient (NomPatient, PrenomPatient, Date_Naissance, Sexe, Adresse, SituationFamiliale, AssuranceMedicale, CodeAssurance, Tel, NomPere, NomMere, NomP_a_prevenir, TelP_a_prevenir) values (@nom, @prenom, @date, @sexe, @adresse, @situation, @assurance, @codeA, @tel, @nomP, @nomM, @nomPaP, @telPaP)", connection);
             retrieveCmd = new SqlCommand("SELECT * FROM Patient where id_patient like @search", connection);
             updateCmd = new SqlCommand("UPDATE Patient SET NomPatient=@nom, PrenomPatient=@prenom, Date_Naissance=@date, Sexe=@sexe Adresse=@adresse, SituationFamiliale=@situation, AssuranceMedicale=@assurance, CodeAssurance=@codeA Tel=@tel, NomPere=@nomP, NomMere=@nomM, NomP_a_prevenir=@nomPaP, TelP_a_prevenir=@telPaP WHERE id_patient=@id", connection);
-            deleteCmd = new SqlCommand("DELETE FROM Patient WHERE id_patient=@id ", connection);
+            deleteCmd = new SqlCommand("DELETE FROM Patient WHERE id_patient=@id", connection);
             listAllCmd = new SqlCommand("SELECT * FROM Patient", connection);
         }
 
