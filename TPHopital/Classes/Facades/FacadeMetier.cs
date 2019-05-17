@@ -31,11 +31,6 @@ namespace TPHopital.Classes.Facades
 
        
         // Generate a random number between two numbers
-public static int RandomNumber()
-        {
-            Random random = new Random();
-            return random.Next();
-        }
 
 
         static public void Add(Medecin m)
