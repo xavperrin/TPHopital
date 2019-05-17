@@ -20,9 +20,9 @@ namespace TPHopital.Classes.DAO
         public Rendez_VousDAO()
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO "+ TABLE + " (codeRDV, medecin, date_RDV, service, patient_ID) values(@codeRDV, @medecin, @date_RDV, @service, @r.patient_ID)", connection);
+            createCmd = new SqlCommand("INSERT INTO "+ TABLE + " (codeRDV, medecin, date_RDV, service, patient_ID) values(@codeRDV, @medecin, @date_RDV, @service, @patient_ID)", connection);
             retrieveCmd = new SqlCommand("SELECT "+COLUMNS+" FROM "+TABLE+" WHERE patient_ID like @search", connection);
-            updateCmd = new SqlCommand("UPDATE " + TABLE + " SET codeRDV='@codeRDV', medecin='@medecin', date_RDV='@date_RDV', r.patient_ID='@r.patient_ID' WHERE r.patient_ID=@r.patient_ID", connection);
+            updateCmd = new SqlCommand("UPDATE " + TABLE + " SET codeRDV='@codeRDV', medecin='@medecin', date_RDV='@date_RDV', patient_ID='@patient_ID' WHERE patient_ID=@patient_ID", connection);
             deleteCmd = new SqlCommand("DELETE FROM " + TABLE + " WHERE patient_ID=@patient_ID ", connection);
             listAllCmd = new SqlCommand("SELECT " + COLUMNS + " FROM " + TABLE , connection);
         }

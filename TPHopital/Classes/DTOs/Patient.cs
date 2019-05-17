@@ -39,4 +39,5 @@ namespace TPHopital.Classes
         public string Nom_P_a_prevenir { get => nom_P_a_prevenir; set => nom_P_a_prevenir = value; }
         public int Tel_P_a_prevenir { get => tel_P_a_prevenir; set => tel_P_a_prevenir = value; }
     }
+
 }
