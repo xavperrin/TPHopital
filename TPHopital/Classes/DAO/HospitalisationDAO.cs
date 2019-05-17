@@ -14,26 +14,24 @@ namespace TPHopital.Classes.DAO
         private SqlCommand listAllCmd;
         private SqlConnection connection;
 
-        private readonly string COLUMNS="date_admission, type_admission, motif_admission, medecin_traitant, nom_accompagnant," +
+        private readonly string COLUMNS = "date_admission, type_admission, motif_admission, medecin_traitant, nom_accompagnant," +
             " prenom_accompagnant, lien_parente, date_entreeAcc, date_sortieAcc, date_sortie, motif_sortie, resultat_sortie, date_deces," +
             " motif_deces, patient_id, traitement_id";
-        private readonly string TABLE="Hospitalisation";
-
-
+        private readonly string TABLE = "Hospitalisation";
 
         public HospitalisationDAO()
         {
-           connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO "+TABLE+" ("+COLUMNS+") values(@date_admission, @type_admission, @motif_admission," +
+            connection = Connection.Instance;
+            createCmd = new SqlCommand("INSERT INTO " + TABLE + " (" + COLUMNS + ") values(@date_admission, @type_admission, @motif_admission," +
                 " @medecin_traitant, @nom_accompagnant, @prenom_accompagnant, @lien_parente, @date_entreeAcc, @date_sortieAcc, @motif_sortie," +
                 " @resultat_sortie, @date_deces, @motif_deces, @patient_id, @traitement_id)", connection);
-            retrieveCmd = new SqlCommand("SELECT id_admission, "+ COLUMNS + " FROM "+ TABLE + " where id_admission like @search", connection);
+            retrieveCmd = new SqlCommand("SELECT id_admission, " + COLUMNS + " FROM " + TABLE + " where id_admission like @search", connection);
             updateCmd = new SqlCommand("UPDATE " + TABLE + " SET date_admission='@date_admission', type_admission='@type_admission', motif_admission='@motif_admission'," +
                 " medecin_traitant='@medecin_traitant', nom_accompagnant='@nom_accompagnant', prenom_accompagnant='@prenom_accompagnant', lien_parente='@lien_parente'," +
                 " date_entreeAcc='@date_entreeAcc', date_sortieAcc='@date_sortieAcc', motif_sortie='@motif_sortie'," +
                 " resultat_sortie='@resultat_sortie', date_deces='@date_deces'", connection);
             deleteCmd = new SqlCommand("DELETE FROM " + TABLE + " WHERE id_admission=@id ", connection);
-            listAllCmd = new SqlCommand("SELECT id_admission " + COLUMNS + " FROM " + TABLE , connection);
+            listAllCmd = new SqlCommand("SELECT id_admission " + COLUMNS + " FROM " + TABLE, connection);
         }
         public void Create(Hospitalisation hospitalisation)
         {
@@ -99,7 +97,6 @@ namespace TPHopital.Classes.DAO
 
             connection.Open();
 
-
             SqlDataReader reader = retrieveCmd.ExecuteReader();
 
             if (reader.Read())
@@ -140,11 +137,11 @@ namespace TPHopital.Classes.DAO
             updateCmd.Parameters.Add(new SqlParameter("@type_admission", hospitalisation.Type_admission));
             updateCmd.Parameters.Add(new SqlParameter("@motif_admission", hospitalisation.Motif_admission));
             updateCmd.Parameters.Add(new SqlParameter("@medecin_traitant", hospitalisation.Medecin_traitant));
-            
+
             updateCmd.Parameters.Add(new SqlParameter("@nom_accompagnant", hospitalisation.Nom_accompagnant));
             updateCmd.Parameters.Add(new SqlParameter("@prenom_accompagnant", hospitalisation.Prenom_accompagnant));
             updateCmd.Parameters.Add(new SqlParameter("@lien_parente", hospitalisation.Lien_parente));
-            
+
             updateCmd.Parameters.Add(new SqlParameter("@date_entreeAcc", hospitalisation.Date_entreeAcc));
             //
             //SORTIE
@@ -183,27 +180,26 @@ namespace TPHopital.Classes.DAO
 
             while (reader.Read())
             {
-                
                 listHospitalisations.Add(new Hospitalisation
                 {
-                Id_admission = reader.GetInt32(0),
-                Date_admission = reader.GetDateTime(1),
-                Type_admission = reader.GetString(2),
-                Motif_admission = reader.GetString(3),
-                Medecin_traitant = reader.GetString(4),
-                Nom_accompagnant = reader.GetString(5),
-                Prenom_accompagnant = reader.GetString(6),
-                Lien_parente = reader.GetString(7),
-                Date_entreeAcc = reader.GetDateTime(8),
-                Date_sortieAcc = reader.GetDateTime(9),
-                Date_sortie = reader.GetDateTime(10),
-                Motif_sortie = reader.GetString(11),
-                Resultat_sortie = reader.GetString(12),
-                Date_deces = reader.GetDateTime(13),
-                Motif_deces = reader.GetString(14),
-                Patient_id = reader.GetInt32(15),
-                Traitement_id = reader.GetInt32(16)
-            });
+                    Id_admission = reader.GetInt32(0),
+                    Date_admission = reader.GetDateTime(1),
+                    Type_admission = reader.GetString(2),
+                    Motif_admission = reader.GetString(3),
+                    Medecin_traitant = reader.GetString(4),
+                    Nom_accompagnant = reader.GetString(5),
+                    Prenom_accompagnant = reader.GetString(6),
+                    Lien_parente = reader.GetString(7),
+                    Date_entreeAcc = reader.GetDateTime(8),
+                    Date_sortieAcc = reader.GetDateTime(9),
+                    Date_sortie = reader.GetDateTime(10),
+                    Motif_sortie = reader.GetString(11),
+                    Resultat_sortie = reader.GetString(12),
+                    Date_deces = reader.GetDateTime(13),
+                    Motif_deces = reader.GetString(14),
+                    Patient_id = reader.GetInt32(15),
+                    Traitement_id = reader.GetInt32(16)
+                });
             }
 
             reader.Close();

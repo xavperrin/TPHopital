@@ -19,7 +19,6 @@ namespace TPHopital.Classes
         public DateTime Date { get => date; set => date = value; }
         public ServiceStatus Status { get => status; set => status = value; }
 
-
         public Rendez_Vous()
         {
         }

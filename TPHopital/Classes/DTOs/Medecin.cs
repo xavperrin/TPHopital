@@ -7,7 +7,6 @@ namespace TPHopital.Classes
 {
     public class Medecin : DTO
     {
-
         private int id_medecin;
         private string nom_medecin;
         private string prenom_medecin;
@@ -18,8 +17,7 @@ namespace TPHopital.Classes
         }
 
         public Medecin(string nom_medecin, string prenom_medecin, string tel_medecin)
-        {
-           
+        {           
             Nom_medecin = nom_medecin;
             Prenom_medecin = prenom_medecin;
             Tel_medecin = tel_medecin;

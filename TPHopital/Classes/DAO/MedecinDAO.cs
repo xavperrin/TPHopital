@@ -23,7 +23,7 @@ namespace TPHopital.Classes.DAO
             connection = Connection.Instance;
             createCmd = new SqlCommand("INSERT INTO Medecin ("+COLUMNS+") values(@nom, @prenom, @tel)", connection);
             retrieveCmd = new SqlCommand("SELECT id_medecin, " + COLUMNS + " FROM Medecin where id_medecin like @search", connection);
-            updateCmd = new SqlCommand("UPDATE "+ TABLE + " SET nom_medecin='@nom', prenom_medecin='@prenom', tel_medecin='@tel' WHERE id=@id", connection);
+            updateCmd = new SqlCommand("UPDATE "+ TABLE + " SET nom_medecin='@nom', prenom_medecin='@prenom', tel_medecin='@tel' WHERE id_medecin=@id", connection);
             deleteCmd = new SqlCommand("DELETE FROM " + TABLE + " WHERE id_medecin=@id ", connection);
             listAllCmd = new SqlCommand("SELECT "+COLUMNS+ " FROM " + TABLE,  connection);
         }
@@ -69,7 +69,6 @@ namespace TPHopital.Classes.DAO
 
             connection.Open();
 
-
             SqlDataReader reader = retrieveCmd.ExecuteReader();
 
             if (reader.Read())
@@ -88,13 +87,10 @@ namespace TPHopital.Classes.DAO
             connection.Close();
 
             return medecin;
-
-
         }
 
         public void Update(Medecin medecin, int id)
         {
-
             updateCmd.Parameters.Add(new SqlParameter("@nom", medecin.Nom_medecin));
             updateCmd.Parameters.Add(new SqlParameter("@prenom", medecin.Prenom_medecin));
             updateCmd.Parameters.Add(new SqlParameter("@tel", medecin.Tel_medecin));
@@ -105,8 +101,6 @@ namespace TPHopital.Classes.DAO
 
             if (updateCmd.ExecuteNonQuery() <= 0)
                 throw new ObjectNotFoundException("Aucun medecin n'a été trouvé avec l'identifiant " + id+". Il ne peut pas etre mis à jour.");
-
-
 
             updateCmd.Dispose();
             connection.Close();
