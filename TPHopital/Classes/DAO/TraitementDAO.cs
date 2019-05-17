@@ -26,7 +26,7 @@ namespace TPHopital.Classes.DAO
             //retrieveAll = new SqlCommand("SELECT * FROM Traitement");
         }
 
-        public void Create(Traitement t)
+        public  void Create(Traitement t)
         {
             throw new NotImplementedException();
         }

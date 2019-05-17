@@ -21,7 +21,11 @@ namespace TPHopital.Classes.Facades
         {
 
             medecindao = new MedecinDAO();
-
+            consultationdao = new ConsultationDAO();
+            examenbiologiquedao = new Examen_BiologiqueDAO();
+            examenradiologiquedao = new Examen_RadiologiqueDAO();
+            facturedao = new FactureDAO();
+            hospitalisationdao = new HospitalisationDAO();
 
         }
 
@@ -50,6 +54,58 @@ namespace TPHopital.Classes.Facades
         static public void Add(Hospitalisation h)
         {
             hospitalisationdao.Create(h);
+        }
+
+
+        static public void Delete(Medecin m)
+        {
+            medecindao.Delete(m.Id_medecin);
+        }
+
+        static public void Delete(Consultation c)
+        {
+            consultationdao.Delete(c.Id_consultation);
+        }
+
+        static public void Delete(Examen_Biologique e)
+        {
+            examenbiologiquedao.Delete(e.Facture_id);
+        }
+
+        static public void Delete(Facture f)
+        {
+            facturedao.Delete(f.Id_facture);
+        }
+
+        static public void Delete(Hospitalisation h)
+        {
+            hospitalisationdao.Delete(h.Id_admission);
+        }
+
+
+        static public void DeleteMedecin(int idmedecin)
+        {
+            medecindao.Delete(idmedecin);
+        }
+
+        static public void DeleteConsultation (int idconsultation)
+        {
+            consultationdao.Delete(idconsultation);
+        }
+
+        static public void DeleteExamen_Biologique(int idexamen)
+        {
+            examenbiologiquedao.Delete(idexamen);
+        }
+
+        static public void DeleteFacture(int idfacture)
+        {
+            facturedao.Delete(idfacture);
+        }
+
+        static public void DeleteHospitalisation(int idhospistalisation)
+        {
+            hospitalisationdao.Delete(idhospistalisation);
         }
     }
 }

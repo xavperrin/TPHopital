@@ -11,13 +11,13 @@ namespace TPHopital.Classes
         private int id_medecin;
         private string nom_medecin;
         private string prenom_medecin;
-        private int tel_medecin;
+        private string tel_medecin;
 
         public Medecin()
         {
         }
 
-        public Medecin(string nom_medecin, string prenom_medecin, int tel_medecin)
+        public Medecin(string nom_medecin, string prenom_medecin, string tel_medecin)
         {
            
             Nom_medecin = nom_medecin;
@@ -28,7 +28,7 @@ namespace TPHopital.Classes
         public int Id_medecin { get => id_medecin; set => id_medecin = value; }
         public string Nom_medecin { get => nom_medecin; set => nom_medecin = value; }
         public string Prenom_medecin { get => prenom_medecin; set => prenom_medecin = value; }
-        public int Tel_medecin { get => tel_medecin; set => tel_medecin = value; }
+        public string Tel_medecin { get => tel_medecin; set => tel_medecin = value; }
 
         public override string ToString()
         {
