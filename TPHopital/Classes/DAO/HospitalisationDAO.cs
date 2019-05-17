@@ -76,7 +76,19 @@ namespace TPHopital.Classes.DAO
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            deleteCmd.Parameters.Add(new SqlParameter("@id", id));
+
+            connection.Open();
+
+            if (deleteCmd.ExecuteNonQuery() > 0)
+            {
+                Console.WriteLine("Suppression effecutée");
+            }
+            else
+                throw new ObjectNotFoundException("Aucune Hospitalisation n'a été trouvée avec l'identifiant " + id + ". Elle ne peut etre supprimee.");
+
+            deleteCmd.Dispose();
+            connection.Close();
         }
 
         public Hospitalisation Retrieve(int id)
