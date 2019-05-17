@@ -68,4 +68,5 @@ namespace TPHopital.Classes
                 "\nNom personne à prévenir:"+nom_P_a_prevenir+"Tel personne à prévenir:"+tel_P_a_prevenir+")";
         }
     }
+
 }
