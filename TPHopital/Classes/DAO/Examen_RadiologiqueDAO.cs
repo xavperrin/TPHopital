@@ -13,7 +13,7 @@ namespace TPHopital.Classes.DAO
             connection = Connection.Instance;
             createCmd = new SqlCommand("INSERT INTO Traitement (date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id) values(@date, @prix, @designation, @resultat, @image, @facture_id )", connection);
             retrieveCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id FROM Traitement where id_traitement like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Traitement SET date_traitement='@date', prix_traitement='@prix', designation='@designation', Resultat_examen='@resultat', image='@image', facture_id='@facture_id' WHERE id=@id", connection);
+            updateCmd = new SqlCommand("UPDATE Traitement SET date_traitement='@date', prix_traitement='@prix', designation='@designation', Resultat_examen='@resultat', image='@image', facture_id='@facture_id' WHERE id_traitement=@id", connection);
             listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id FROM Traitement", connection);
         }
 
@@ -47,7 +47,6 @@ namespace TPHopital.Classes.DAO
             updateCmd.Parameters.Add(new SqlParameter("@facture_id", examen.Facture_id));
 
             updateCmd.Parameters.Add(new SqlParameter("@id", id));
-
 
             connection.Open();
             updateCmd.ExecuteNonQuery();
@@ -91,7 +90,6 @@ namespace TPHopital.Classes.DAO
             retrieveCmd.Parameters.Add(new SqlParameter("@search", id));
 
             connection.Open();
-
 
             SqlDataReader reader = retrieveCmd.ExecuteReader();
 

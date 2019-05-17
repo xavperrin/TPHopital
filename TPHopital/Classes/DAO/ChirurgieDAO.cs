@@ -13,7 +13,7 @@ namespace TPHopital.Classes.DAO
             connection = Connection.Instance;
             createCmd = new SqlCommand("INSERT INTO Traitement (date_traitement, prix_traitement, chirurgien, anesthesiste, facture_id) values(@date, @prix, @chirurgien, @anesthesiste)", connection);
             retrieveCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, chirurgien, anesthesiste, facture_id FROM Traitement where id_traitement like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Traitement SET date_traitement='@date', prix_traitement='@prix', chirurgien='@chirurgien', anesthesiste='@anesthesiste', facture_id='@facture_id' WHERE id=@id", connection);
+            updateCmd = new SqlCommand("UPDATE Traitement SET date_traitement='@date', prix_traitement='@prix', chirurgien='@chirurgien', anesthesiste='@anesthesiste', facture_id='@facture_id' WHERE id_traitement=@id", connection);
             listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, chirurgien, anesthesiste, facture_id FROM Traitement", connection);
         }
 
@@ -107,8 +107,6 @@ namespace TPHopital.Classes.DAO
             connection.Close();
 
             return chirurgie;
-        }
-
-      
+        }      
     }
 }
