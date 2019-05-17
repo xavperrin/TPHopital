@@ -15,14 +15,17 @@ namespace TPHopital.Classes.DAO
 
         private SqlConnection connection;
 
+        private string TABLE = "Medecin";
+        private string COLUMNS = "nom_medecin, prenom_medecin, tel_medecin";
+
         public MedecinDAO() 
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO Medecin (nom_medecin, prenom_medecin, tel_medecin) values(@nom, @prenom, @tel)", connection);
-            retrieveCmd = new SqlCommand("SELECT * FROM Medecin where id_medecin like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Medecin SET nom_medecin='@nom', prenom_medecin='@prenom', tel_medecin='@tel' WHERE id=@id", connection);
-            deleteCmd = new SqlCommand("DELETE FROM Medecin WHERE id_medecin=@id ", connection);
-            listAllCmd = new SqlCommand("SELECT * FROM Medecin", connection);
+            createCmd = new SqlCommand("INSERT INTO Medecin ("+COLUMNS+") values(@nom, @prenom, @tel)", connection);
+            retrieveCmd = new SqlCommand("SELECT id_medecin, " + COLUMNS + " FROM Medecin where id_medecin like @search", connection);
+            updateCmd = new SqlCommand("UPDATE "+ TABLE + " SET nom_medecin='@nom', prenom_medecin='@prenom', tel_medecin='@tel' WHERE id=@id", connection);
+            deleteCmd = new SqlCommand("DELETE FROM " + TABLE + " WHERE id_medecin=@id ", connection);
+            listAllCmd = new SqlCommand("SELECT "+COLUMNS+ " FROM " + TABLE,  connection);
         }
 
         public void Create(Medecin medecin)
@@ -63,7 +66,7 @@ namespace TPHopital.Classes.DAO
 
         public Medecin Retrieve(int id)
         {
-            Medecin medecin = new Medecin();
+            Medecin medecin = null;
 
             retrieveCmd.Parameters.Add(new SqlParameter("@search", id));
 
@@ -74,10 +77,11 @@ namespace TPHopital.Classes.DAO
 
             if (reader.Read())
             {
+                medecin = new Medecin();
                 medecin.Id_medecin = reader.GetInt32(0);
                 medecin.Nom_medecin = reader.GetString(1);
                 medecin.Prenom_medecin = reader.GetString(2);
-                medecin.Tel_medecin = reader.GetInt32(3);
+                medecin.Tel_medecin = reader.GetString(3);
             }
             else
                 throw new ObjectNotFoundException("Aucun medecin n'a été trouvé avec l'identifiant " + id);
@@ -126,7 +130,7 @@ namespace TPHopital.Classes.DAO
                     Id_medecin = reader.GetInt32(0),
                     Nom_medecin = reader.GetString(1),
                     Prenom_medecin = reader.GetString(2),
-                    Tel_medecin = reader.GetInt32(3)
+                    Tel_medecin = reader.GetString(3)
                 });
             }
 
