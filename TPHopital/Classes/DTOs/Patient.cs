@@ -5,7 +5,6 @@ using System.Text;
 namespace TPHopital.Classes
 {
     public class Patient
-
     {
         private int id_Patient;
         private string nomPatient;

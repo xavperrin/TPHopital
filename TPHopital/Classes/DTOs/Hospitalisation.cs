@@ -25,6 +25,32 @@ namespace TPHopital.Classes
         private int patient_id;
         private int traitement_id;
 
+        public Hospitalisation()
+        {
+
+        }
+
+        public Hospitalisation(int id_admission, DateTime date_admission, string type_admission, string motif_admission, string medecin_traitant, string nom_accompagnant, string prenom_accompagnant, string lien_parente, DateTime date_entreeAcc, DateTime date_sortieAcc, DateTime date_sortie, string motif_sortie, string resultat_sortie, DateTime date_deces, string motif_deces, int patient_id, int traitement_id)
+        {
+            this.id_admission = id_admission;
+            this.date_admission = date_admission;
+            this.type_admission = type_admission;
+            this.motif_admission = motif_admission;
+            this.medecin_traitant = medecin_traitant;
+            this.nom_accompagnant = nom_accompagnant;
+            this.prenom_accompagnant = prenom_accompagnant;
+            this.lien_parente = lien_parente;
+            this.date_entreeAcc = date_entreeAcc;
+            this.date_sortieAcc = date_sortieAcc;
+            this.date_sortie = date_sortie;
+            this.motif_sortie = motif_sortie;
+            this.resultat_sortie = resultat_sortie;
+            this.date_deces = date_deces;
+            this.motif_deces = motif_deces;
+            this.patient_id = patient_id;
+            this.traitement_id = traitement_id;
+        }
+
         public int Id_admission { get => id_admission; set => id_admission = value; }
         public DateTime Date_admission { get => date_admission; set => date_admission = value; }
         public string Type_admission { get => type_admission; set => type_admission = value; }
@@ -42,5 +68,13 @@ namespace TPHopital.Classes
         public string Motif_deces { get => motif_deces; set => motif_deces = value; }
         public int Patient_id { get => patient_id; set => patient_id = value; }
         public int Traitement_id { get => traitement_id; set => traitement_id = value; }
+
+        public override string ToString()
+        {
+            return "Hospitalisation (id:" + id_admission + ", date admission:" + date_admission + ", type:" + type_admission + ", motif:" + motif_admission +
+                "\nmedecin:" + medecin_traitant + ",nom accompagnant:" + nom_accompagnant + ", prenom accompagnant:" + prenom_accompagnant + ",lien parenté:" + lien_parente +
+                "\ndate entree acc:" + date_entreeAcc + ", date sortie acc:" + date_sortieAcc + ", date sortie:" + date_sortie + "motif sortie:" + motif_sortie +
+                "\ndate deces:" + date_deces + ",motif deces:" + motif_deces + ",id patient:" + patient_id + ",id traitement:" + traitement_id + ")";
+        }
     }
 }
