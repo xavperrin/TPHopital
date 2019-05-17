@@ -16,6 +16,7 @@ namespace TPHopital.Classes.Facades
         static public IDAO<Examen_Radiologique, int> examenradiologiquedao;
         static public IDAO<Facture, int> facturedao;
         static public IDAO<Hospitalisation, int> hospitalisationdao;
+        static public IDAO<Patient, int> patientdao;
 
         public static void Init()
         {
@@ -26,6 +27,8 @@ namespace TPHopital.Classes.Facades
             examenradiologiquedao = new Examen_RadiologiqueDAO();
             facturedao = new FactureDAO();
             hospitalisationdao = new HospitalisationDAO();
+
+            patientdao = new PatientDAO();
 
         }
 
@@ -58,6 +61,11 @@ namespace TPHopital.Classes.Facades
             hospitalisationdao.Create(h);
         }
 
+
+        static public void Add(Patient p)
+        {
+            patientdao.Create(p);
+        }
 
         static public void Delete(Medecin m)
         {

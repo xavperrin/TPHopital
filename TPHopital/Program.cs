@@ -16,7 +16,7 @@ namespace TPHopital
             Medecin m = new Medecin();
             m.Nom_medecin = "Muflin";
             m.Prenom_medecin = "Guitrigneux";
-            m.Tel_medecin = 4444545;
+            m.Tel_medecin = "4444545";
             FacadeMetier.Add(m);
             Console.ReadLine();
         }
@@ -102,9 +102,14 @@ namespace TPHopital
         private static void AddRendezVous()
         {
             Console.Clear();
-            Rendez_Vous newRdv = new Rendez_VousDAO().Create(Rendez_Vous rdv);
+
+
+            //Rendez_Vous new Rdv = new Rendez_VousDAO().Create(Rendez_Vous rdv);
+            Rendez_Vous rdv = new Rendez_Vous();
             
-                
+
+           // FacadeMetier.Add(rdv);
+
 
 
         }
@@ -143,26 +148,36 @@ namespace TPHopital
         }
         static void NewPatient()
         {
+            Patient p = new Patient();
+                Console.WriteLine("Entrez nom");
+            p.NomPatient = Console.ReadLine();
+            Console.WriteLine("Entrez prénom");
+            p.PrenomPatient = Console.ReadLine();
+           
+            FacadeMetier.Add(p);
 
         }
         static void InformationPatient()
         {
             Console.Clear();
-
-            List<Patient> liste = new PatientDAO().Retrieve();
-            if (liste.Count > 0)
-            {
-                Console.WriteLine("------Informations Patient------");
-                foreach (Rendez_Vous r in liste)
-                {
-                    Console.WriteLine(r);
-                    Console.WriteLine("----------------------------");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Aucune information");
-            }
+            Console.WriteLine("identifiant du patient ?");
+            int idpatient=Int32.Parse(Console.ReadLine());
+            Patient patient = new Patient();
+            PatientDAO _dao =new PatientDAO();
+            patient=_dao.Retrieve(idpatient);
+            //if (liste.Count > 0)
+            //{
+            //    Console.WriteLine("------Informations Patient------");
+            //    foreach (Rendez_Vous r in liste)
+            //    {
+            //        Console.WriteLine(r);
+            //        Console.WriteLine("----------------------------");
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Aucune information");
+            //}
             MenuPatient();
         }
         static void AddRendez_Vous()
