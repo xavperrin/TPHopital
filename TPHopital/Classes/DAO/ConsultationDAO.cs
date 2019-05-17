@@ -8,7 +8,6 @@ namespace TPHopital.Classes.DAO
 {
     public class ConsultationDAO : IDAO<Consultation, Int32>
     {
-
         private SqlCommand createCmd;
         private SqlCommand retrieveCmd;
         private SqlCommand updateCmd;
@@ -26,8 +25,8 @@ namespace TPHopital.Classes.DAO
             listAllCmd = new SqlCommand("SELECT * FROM Consultation", connection);
             updateCmd = new SqlCommand("UPDATE Consultation SET date_consultation='@date'," +
                                       " synthese='@synthese', type_consultation_id='@type', rdv_code='@rdv_code'," +
-                                      " prescription_id='@prescription_id', medecin_id='@medecin_id' WHERE id=@id", connection);
-            deleteCmd = new SqlCommand("DELETE FROM Consultation WHERE id=@id ", connection);
+                                      " prescription_id='@prescription_id', medecin_id='@medecin_id' WHERE id_consultation=@id", connection);
+            deleteCmd = new SqlCommand("DELETE FROM Consultation WHERE id_consultation=@id ", connection);
         }
 
         public void Create(Consultation consultation)
@@ -46,7 +45,6 @@ namespace TPHopital.Classes.DAO
                 Console.WriteLine("Insertion effecutée");
             }
             
-
             createCmd.Dispose();
             connection.Close();
         }
