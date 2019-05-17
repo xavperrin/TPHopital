@@ -17,24 +17,17 @@ namespace TPHopital.Classes.DAO
         public PatientDAO()
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO Patient (NomPatient, PrenomPatient, Date_Naissance, Sexe, Adresse," +
-                "SituationFamiliale, AssuranceMedicale, CodeAssurance," +
-                "Tel, NomPere, NomMere, NomP_a_prevenir, TelP_a_prevenir) values(" +
-                "@nom, @prenom, @date, @sexe, @adresse, " +
-                "@situation, @assurance, @codeA, " +
-                "@tel, @nomP, @nomM, @nomPaP, @telPaP)", connection);
+            createCmd = new SqlCommand("INSERT INTO Patient (NomPatient, PrenomPatient, Date_Naissance, Sexe, Adresse, SituationFamiliale, AssuranceMedicale, CodeAssurance, Tel, NomPere, NomMere, NomP_a_prevenir, TelP_a_prevenir) values (@nom, @prenom, @date, @sexe, @adresse, @situation, @assurance, @codeA, @tel, @nomP, @nomM, @nomPaP, @telPaP)", connection);
             retrieveCmd = new SqlCommand("SELECT * FROM Patient where id_patient like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Patient SET " +
-                "NomPatient='@nom', PrenomPatient='@prenom', Date_Naissance='@date', Sexe='@sexe'" +
-                "Adresse='@adresse', SituationFamiliale='@situation', AssuranceMedicale='@assurance', CodeAssurance='@codeA'" +
-                "Tel='@tel', NomPere='@nomP', NomMere='@nomM', NomP_a_prevenir='@nomPaP', TelP_a_prevenir='@telPaP'" +
-                "WHERE id_patient=@id", connection);
+            updateCmd = new SqlCommand("UPDATE Patient SET NomPatient=@nom, PrenomPatient=@prenom, Date_Naissance=@date, Sexe=@sexe Adresse=@adresse, SituationFamiliale=@situation, AssuranceMedicale=@assurance, CodeAssurance=@codeA Tel=@tel, NomPere=@nomP, NomMere=@nomM, NomP_a_prevenir=@nomPaP, TelP_a_prevenir=@telPaP WHERE id_patient=@id", connection);
             deleteCmd = new SqlCommand("DELETE FROM Patient WHERE id_patient=@id ", connection);
             listAllCmd = new SqlCommand("SELECT * FROM Patient", connection);
         }
 
         public void Create(Patient patient)
         {
+            string format = "yyyy-MM-dd HH:mm:ss";
+
             createCmd.Parameters.Add(new SqlParameter("@nom", patient.NomPatient));
             createCmd.Parameters.Add(new SqlParameter("@prenom", patient.PrenomPatient));
             createCmd.Parameters.Add(new SqlParameter("@date", patient.DateNaissance));
@@ -50,11 +43,13 @@ namespace TPHopital.Classes.DAO
             createCmd.Parameters.Add(new SqlParameter("@telPaP", patient.Tel_P_a_prevenir));
 
             connection.Open();
-
+            Console.WriteLine(patient);
+            //Console.ReadLine();
             if (createCmd.ExecuteNonQuery() > 0)
             {
-                Console.WriteLine("Insertion effecutée");
+                Console.WriteLine("Insertion effecutée" + patient);
             }
+            else throw new InsertPatientException("Insertion n'a pas réussie"+patient);
 
             createCmd.Dispose();
             connection.Close();

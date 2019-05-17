@@ -62,10 +62,10 @@ namespace TPHopital.Classes
 
         public override string ToString()
         {
-            return "Medecin (id :" + Id_Patient + "nom:" + NomPatient + " prenom:" + PrenomPatient + "date de naissance:" + DateNaissance +
-                "\nsexe:"+sexe+"adresse:"+adresse+"situation familiale:"+situationFamiliale+"assurance:"+assuranceMedicale+
-                "\nCode assurance:"+codeassurance+"téléphone:"+tel+"nom du père:"+nomPere+"nom de la mère:"+nomMere+
-                "\nNom personne à prévenir:"+nom_P_a_prevenir+"Tel personne à prévenir:"+tel_P_a_prevenir+")";
+            return "Medecin (id :" + Id_Patient + " nom:" + NomPatient + " prenom: " + PrenomPatient + " date de naissance: " + DateNaissance +
+                "\n sexe: "+sexe+"adresse:"+adresse+" situation familiale: "+situationFamiliale+" assurance: "+assuranceMedicale+
+                "\nCode assurance: "+codeassurance+"téléphone: "+tel+"nom du père: "+nomPere+"nom de la mère:"+nomMere+
+                "\nNom personne à prévenir: "+nom_P_a_prevenir+"Tel personne à prévenir:"+tel_P_a_prevenir+")";
         }
     }
 

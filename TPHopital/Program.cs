@@ -12,12 +12,26 @@ namespace TPHopital
     {
         static void Main(string[] args)
         {
-            //FacadeMetier facade = new FacadeMetier();
-            Medecin m = new Medecin();
-            m.Nom_medecin = "Muflin";
-            m.Prenom_medecin = "Guitrigneux";
-            m.Tel_medecin = "4444545";
+            FacadeMetier.Init();
+            Patient m = new Patient();
+            m.NomPatient = "Muflin";
+            m.PrenomPatient = "Guitrigneux";
+            m.Tel = "4444545";
+            m.Adresse = "2 rue de bouyaaa";
+            m.DateNaissance = DateTime.Now;
+            m.Codeassurance = "";
+            m.NomMere = "";
+            m.NomPere = "";
+            m.Sexe = "Homme";
+            m.SituationFamiliale = "Célibataire";
+            m.Tel_P_a_prevenir = "";
+            m.Nom_P_a_prevenir = "";
+            m.AssuranceMedicale = "";
+          
+
             FacadeMetier.Add(m);
+
+            Menu();
             Console.ReadLine();
         }
 
@@ -186,6 +200,13 @@ namespace TPHopital
             p.AssuranceMedicale = Console.ReadLine();
             Console.WriteLine("Entrez le numero de téléphone :");
             p.Tel= Console.ReadLine();
+
+            p.Tel_P_a_prevenir = "";
+            p.Codeassurance = "";
+            p.NomMere = "";
+            p.NomPere = "";
+            p.Nom_P_a_prevenir = "";
+            
 
             FacadeMetier.Add(p);
 
