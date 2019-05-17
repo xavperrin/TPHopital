@@ -43,7 +43,6 @@ namespace TPHopital.Classes.DAO
 
         public void Delete(int id)
         {
-
             deleteCmd.Parameters.Add(new SqlParameter("@id", id));
 
             connection.Open();
@@ -55,8 +54,6 @@ namespace TPHopital.Classes.DAO
 
             deleteCmd.Dispose();
             connection.Close();
-
-
         }
 
         public Medecin Retrieve(int id)
