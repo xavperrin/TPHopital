@@ -8,7 +8,7 @@ using TPHopital.Classes.Traitements;
 namespace TPHopital.Classes.Facades
 {
     
-    public class FacadeMetier
+    public static class FacadeMetier
     {
         static public IDAO<Medecin, int> medecindao;
         static public IDAO<Consultation, int> consultationdao;
@@ -17,7 +17,7 @@ namespace TPHopital.Classes.Facades
         static public IDAO<Facture, int> facturedao;
         static public IDAO<Hospitalisation, int> hospitalisationdao;
 
-        public FacadeMetier()
+        public static void Init()
         {
 
             medecindao = new MedecinDAO();

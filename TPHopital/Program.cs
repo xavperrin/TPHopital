@@ -11,11 +11,11 @@ namespace TPHopital
     {
         static void Main(string[] args)
         {
-            //FacadeMetier facade = new FacadeMetier();
-             Medecin m= new Medecin();
+            FacadeMetier.Init();
+            Medecin m= new Medecin();
             m.Nom_medecin = "Muflin";
             m.Prenom_medecin = "Guitrigneux";
-            m.Tel_medecin = 4444545;
+            m.Tel_medecin = "4444545";
             FacadeMetier.Add(m);
             Console.ReadLine();
         }
