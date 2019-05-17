@@ -13,7 +13,7 @@ namespace TPHopital.Classes.DAO
             connection = Connection.Instance;
             createCmd = new SqlCommand("INSERT INTO Traitement (date_traitement, prix_traitement, designation, Resultat_examen, Facture_id) values(@date, @prix, @designation, @resultat)", connection);
             retrieveCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, Facture_id FROM Traitement where id_traitement like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Traitement SET date_traitement='@date', prix_traitement='@prix', designation='@designation', Resultat_examen='@resultat', Facture_id='@facture_id' WHERE id=@id", connection);
+            updateCmd = new SqlCommand("UPDATE Traitement SET date_traitement='@date', prix_traitement='@prix', designation='@designation', Resultat_examen='@resultat', Facture_id='@facture_id' WHERE id_traitement=@id", connection);
             listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, Facture_id FROM Traitement", connection);
         }
 
@@ -34,9 +34,7 @@ namespace TPHopital.Classes.DAO
 
             createCmd.Dispose();
             connection.Close();
-        }
-
-    
+        }    
 
         public new List<Examen_Biologique> ListAll()
         {
@@ -73,7 +71,6 @@ namespace TPHopital.Classes.DAO
             retrieveCmd.Parameters.Add(new SqlParameter("@search", id));
 
             connection.Open();
-
 
             SqlDataReader reader = retrieveCmd.ExecuteReader();
 
