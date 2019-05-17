@@ -13,20 +13,20 @@ CREATE TABLE Patient (
 	Date_Naissance DATETIME NOT NULL,
 	Sexe VARCHAR(5) NOT NULL,
 	Adresse VARCHAR(100) NOT NULL,
-	SituationFamilliale VARCHAR(10) NOT NULL,
+	SituationFamiliale VARCHAR(10) NOT NULL,
 	AssuranceMedicale VARCHAR(50) NOT NULL,
 	CodeAssurance VARCHAR(13) NOT NULL,
-	Tel INT NOT NULL,
+	Tel VARCHAR(10) NOT NULL,
 	NomPere VARCHAR(50) NOT NULL,
-	PrenomPere VARCHAR(50) NOT NULL,
+	NomMere VARCHAR(50) NOT NULL,
 	NomP_a_prevenir VARCHAR(50) NOT NULL,
-	PrenomP_a_prevenir VARCHAR(50) NOT NULL
+	TelP_a_prevenir VARCHAR(10) NOT NULL
 )
 
 CREATE TABLE Type_Consultation (
 	ID_Type_Consultation INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	Type_Consultation VARCHAR(6) NOT NULL,
-	Prix_Consultation INT NOT NULL
+	Prix_Consultation DECIMAL NOT NULL
 )
 
 CREATE TABLE Prescription (
@@ -57,7 +57,7 @@ CREATE TABLE Consultation (
 CREATE TABLE Traitement (
 	ID_Traitement INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	date_traitement INT NOT NULL, -- Durée de traitement
-	prix_traitement INT NOT NULL,	
+	prix_traitement DECIMAL NOT NULL,	
 	Designation VARCHAR(50) NOT NULL,
 	Resultat_examen VARCHAR(50) NOT NULL,
 	Image VARCHAR(50) NOT NULL,	
@@ -77,6 +77,7 @@ CREATE TABLE Hospitalisation (
 	Lien_Parente VARCHAR(10) NOT NULL,
 	Date_entreeAcc DATETIME NOT NULL,
 	Date_sortieAcc DATETIME NOT NULL,
+	Date_sortie DATETIME NOT NULL,
 	Motif_sortie VARCHAR(50) NOT NULL,
 	Resultat_sortie VARCHAR(50) NOT NULL,
 	Date_Deces DATETIME NOT NULL,
@@ -88,6 +89,6 @@ CREATE TABLE Hospitalisation (
 CREATE TABLE Facture (
 	ID_facture INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	date_facture DATETIME NOT NULL,
-	total FLOAT NOT NULL,
+	total DECIMAL NOT NULL,
 	Admission_ID INT NOT NULL
 )

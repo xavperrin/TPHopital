@@ -8,7 +8,7 @@ namespace TPHopital.Classes.DTOs
     {
         private int id_facture;
         private DateTime date_facture;
-        private float total;
+        private decimal total;
         private int admission_id;
 
         public Facture()
@@ -16,7 +16,7 @@ namespace TPHopital.Classes.DTOs
 
         }
 
-        public Facture(int id_facture, DateTime date_facture, float total, int admission_id)
+        public Facture(int id_facture, DateTime date_facture, decimal total, int admission_id)
         {
             this.id_facture = id_facture;
             this.date_facture = date_facture;
@@ -26,7 +26,7 @@ namespace TPHopital.Classes.DTOs
 
         public int Id_facture { get => id_facture; set => id_facture = value; }
         public DateTime Date_facture { get => date_facture; set => date_facture = value; }
-        public float Total { get => total; set => total = value; }
+        public decimal Total { get => total; set => total = value; }
         public int Admission_id { get => admission_id; set => admission_id = value; }
 
         public override string ToString()

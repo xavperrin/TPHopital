@@ -70,7 +70,7 @@ namespace TPHopital.Classes.DAO
             {
                 facture.Id_facture = reader.GetInt32(0);
                 facture.Date_facture = reader.GetDateTime(1);
-                facture.Total = reader.GetFloat(2);
+                facture.Total = reader.GetDecimal(2);
                 facture.Admission_id = reader.GetInt32(3);
             }
 
@@ -109,7 +109,7 @@ namespace TPHopital.Classes.DAO
                 {
                     Id_facture = reader.GetInt32(0),
                     Date_facture = reader.GetDateTime(1),
-                    Total = reader.GetFloat(2),
+                    Total = reader.GetDecimal(2),
                     Admission_id = reader.GetInt32(3)
                 });
             }

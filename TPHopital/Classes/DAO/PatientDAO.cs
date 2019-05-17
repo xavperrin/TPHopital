@@ -97,11 +97,11 @@ namespace TPHopital.Classes.DAO
                 patient.SituationFamiliale = reader.GetString(6);
                 patient.AssuranceMedicale = reader.GetString(7);
                 patient.Codeassurance = reader.GetString(8);
-                patient.Tel = reader.GetInt32(9);
+                patient.Tel = reader.GetString(9);
                 patient.NomPere = reader.GetString(10);
                 patient.NomMere = reader.GetString(11);
                 patient.Nom_P_a_prevenir = reader.GetString(12);
-                patient.Tel_P_a_prevenir = reader.GetInt32(13);
+                patient.Tel_P_a_prevenir = reader.GetString(13);
             }
 
             reader.Close();
@@ -156,11 +156,11 @@ namespace TPHopital.Classes.DAO
                     SituationFamiliale = reader.GetString(6),
                     AssuranceMedicale = reader.GetString(7),
                     Codeassurance = reader.GetString(8),
-                    Tel = reader.GetInt32(9),
+                    Tel = reader.GetString(9),
                     NomPere = reader.GetString(10),
                     NomMere = reader.GetString(11),
                     Nom_P_a_prevenir = reader.GetString(12),
-                    Tel_P_a_prevenir = reader.GetInt32(13)
+                    Tel_P_a_prevenir = reader.GetString(13)
                 });
             }
 
