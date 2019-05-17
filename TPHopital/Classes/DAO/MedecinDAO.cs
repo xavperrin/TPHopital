@@ -15,7 +15,7 @@ namespace TPHopital.Classes.DAO
 
         private SqlConnection connection;
 
-        public MedecinDAO()
+        public MedecinDAO() 
         {
             connection = Connection.Instance;
             createCmd = new SqlCommand("INSERT INTO Medecin (nom_medecin, prenom_medecin, tel_medecin) values(@nom, @prenom, @tel)", connection);
@@ -51,6 +51,8 @@ namespace TPHopital.Classes.DAO
             {
                 Console.WriteLine("Suppression effecutée");
             }
+            else
+                throw new ObjectNotFoundException("Aucun medecin n'a été trouvé avec l'identifiant " + id+". Il ne peut etre supprime.");
 
             deleteCmd.Dispose();
             connection.Close();
@@ -74,6 +76,8 @@ namespace TPHopital.Classes.DAO
                 medecin.Prenom_medecin = reader.GetString(2);
                 medecin.Tel_medecin = reader.GetInt32(3);
             }
+            else
+                throw new ObjectNotFoundException("Aucun medecin n'a été trouvé avec l'identifiant " + id);
 
             reader.Close();
             retrieveCmd.Dispose();
@@ -94,7 +98,12 @@ namespace TPHopital.Classes.DAO
             updateCmd.Parameters.Add(new SqlParameter("@id", id));
 
             connection.Open();
-            updateCmd.ExecuteNonQuery();
+
+            if (updateCmd.ExecuteNonQuery() <= 0)
+                throw new ObjectNotFoundException("Aucun medecin n'a été trouvé avec l'identifiant " + id+". Il ne peut pas etre mis à jour.");
+
+
+
             updateCmd.Dispose();
             connection.Close();
         }

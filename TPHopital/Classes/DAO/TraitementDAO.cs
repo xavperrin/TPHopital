@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace TPHopital.Classes.DAO
 {
-    abstract class TraitementDAO : IDAO<Traitement, Int32>
+    public abstract class TraitementDAO : IDAO<Traitement, int>
     {
         protected SqlCommand createCmd;
         protected SqlCommand retrieveCmd;
@@ -26,7 +26,7 @@ namespace TPHopital.Classes.DAO
             //retrieveAll = new SqlCommand("SELECT * FROM Traitement");
         }
 
-        public void Create(Traitement traitement)
+        public void Create(Traitement t)
         {
             throw new NotImplementedException();
         }
@@ -53,11 +53,10 @@ namespace TPHopital.Classes.DAO
 
         public Traitement Retrieve(int id)
         {
-
             throw new NotImplementedException();
         }
 
-        public void Update(Traitement traitement, int id)
+        public void Update(Traitement t, int id)
         {
             throw new NotImplementedException();
         }

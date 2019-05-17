@@ -6,7 +6,7 @@ using TPHopital.Classes.Traitements;
 
 namespace TPHopital.Classes.DAO
 {
-    class ChirurgieDAO : TraitementDAO, IDAO<Chirurgie, Int32>
+    class ChirurgieDAO :TraitementDAO, IDAO<Chirurgie, int>
     {
         public ChirurgieDAO()
         {
@@ -108,5 +108,7 @@ namespace TPHopital.Classes.DAO
 
             return chirurgie;
         }
+
+      
     }
 }

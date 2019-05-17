@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
+using TPHopital.Classes.DTOs;
 
 namespace TPHopital.Classes.DAO
 {

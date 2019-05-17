@@ -6,7 +6,7 @@ namespace TPHopital.Classes.DAO
 {
     public interface IDAO<T, ID>
     {
-        void Create(T t);
+        void Create(T t) ;
         T Retrieve(ID id);
         void Update(T t, ID id);
         void Delete(ID id);
