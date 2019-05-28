@@ -20,6 +20,8 @@ namespace TPHopital.Classes.DAO
 
         public bool Create(Chirurgie chirurgie)
         {
+            if (chirurgie == null)
+                throw new ArgumentNullException(nameof(chirurgie));
             bool created = false;
             Task t = Task.Run(() =>
             {
@@ -49,6 +51,8 @@ namespace TPHopital.Classes.DAO
 
         public bool Update(Chirurgie chirurgie, int id)
         {
+            if (chirurgie == null)
+                throw new ArgumentNullException(nameof(chirurgie));
             bool updated = false;
             Task.Run(() =>
             {
