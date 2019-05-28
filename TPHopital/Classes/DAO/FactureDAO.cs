@@ -25,8 +25,9 @@ namespace TPHopital.Classes.DAO
             listAllCmd = new SqlCommand("SELECT * FROM Facture", connection);
         }
 
-        public void Create(Facture facture)
+        public bool Create(Facture facture)
         {
+            bool created = false;
             createCmd.Parameters.Add(new SqlParameter("@date", facture.Date_facture));
             createCmd.Parameters.Add(new SqlParameter("@total", facture.Total));
             createCmd.Parameters.Add(new SqlParameter("@idAdmission", facture.Admission_id));
@@ -35,10 +36,12 @@ namespace TPHopital.Classes.DAO
             if (createCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Insertion effecutée");
+                created = true;
             }
 
             createCmd.Dispose();
             connection.Close();
+            return created;
         }
 
         public void Delete(int id)

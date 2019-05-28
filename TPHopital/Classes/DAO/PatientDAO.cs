@@ -24,11 +24,13 @@ namespace TPHopital.Classes.DAO
             listAllCmd = new SqlCommand("SELECT * FROM Patient", connection);
         }
 
-        public void Create(Patient patient)
+        public bool Create(Patient patient)
         {
+
+            bool created = false;
             Task t = Task.Run(() =>
             {
-                string format = "yyyy-MM-dd HH:mm:ss";
+               
                 createCmd.Parameters.Clear();
 
                 createCmd.Parameters.Add(new SqlParameter("@nom", patient.NomPatient));
@@ -53,6 +55,7 @@ namespace TPHopital.Classes.DAO
                     if (createCmd.ExecuteNonQuery() > 0)
                     {
                         Console.WriteLine("Insertion effecutée" + patient);
+                        created = true;
                     }
                     else throw new InsertPatientException("Insertion n'a pas réussie" + patient);
 
@@ -61,6 +64,7 @@ namespace TPHopital.Classes.DAO
                 }
             });
             t.Wait();
+            return created;
         }
 
         public void Delete(int id)

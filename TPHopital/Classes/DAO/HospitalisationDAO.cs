@@ -36,8 +36,9 @@ namespace TPHopital.Classes.DAO
             listAllCmd = new SqlCommand("SELECT id_admission " + COLUMNS + " FROM " + TABLE, connection);
         }
 
-        public void Create(Hospitalisation hospitalisation)
+        public bool Create(Hospitalisation hospitalisation)
         {
+            bool created = false;
             createCmd.Parameters.Add(new SqlParameter("@date_admission", hospitalisation.Date_admission));
             createCmd.Parameters.Add(new SqlParameter("@type_admission", hospitalisation.Type_admission));
             createCmd.Parameters.Add(new SqlParameter("@motif_admission", hospitalisation.Motif_admission));
@@ -67,11 +68,13 @@ namespace TPHopital.Classes.DAO
             if (createCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Insertion effecutée");
+                created = true;
             }
             else throw new HospitalisationCreateException("Cette hospitalisation n'a pas pu etre créée dans la base de données.");
 
             createCmd.Dispose();
             connection.Close();
+            return created;
         }
 
         public void Delete(int id)

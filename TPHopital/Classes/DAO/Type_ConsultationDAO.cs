@@ -24,8 +24,9 @@ namespace TPHopital.Classes.DAO
             listAllCmd = new SqlCommand("SELECT * FROM Type_Consultation", connection);
         }
 
-        public void Create(Type_Consultation type_consultation)
+        public bool Create(Type_Consultation type_consultation)
         {
+            bool created = false;
             createCmd.Parameters.Add(new SqlParameter("@type", type_consultation.Type_consultation));
             createCmd.Parameters.Add(new SqlParameter("@prix", type_consultation.Prix_consultation));
             connection.Open();
@@ -33,10 +34,12 @@ namespace TPHopital.Classes.DAO
             if (createCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Insertion effecutée");
+                created = true;
             }
 
             createCmd.Dispose();
             connection.Close();
+            return created;
         }
 
         public void Delete(int id)

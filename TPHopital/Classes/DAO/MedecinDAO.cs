@@ -34,9 +34,9 @@ namespace TPHopital.Classes.DAO
 
         }
 
-        public void Create(Medecin medecin)
+        public bool Create(Medecin medecin)
         {
-
+            bool created = false;
             createCmd.Parameters.Clear();
 
             createCmd.Parameters.Add(new SqlParameter("@nom", medecin.Nom_medecin));
@@ -47,10 +47,12 @@ namespace TPHopital.Classes.DAO
             if (createCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Insertion effecutée");
+                created = true;
             }
 
             createCmd.Dispose();
             connection.Close();
+            return created;
         }
 
         public void Delete(int id)

@@ -27,8 +27,9 @@ namespace TPHopital.Classes.DAO
             deleteCmd = new SqlCommand("DELETE FROM " + TABLE + " WHERE patient_ID=@patient_ID ", connection);
             listAllCmd = new SqlCommand("SELECT " + COLUMNS + " FROM " + TABLE , connection);
         }
-        public void Create(Rendez_Vous rdv)
+        public bool Create(Rendez_Vous rdv)
         {
+            bool created = false;
             createCmd.Parameters.Add(new SqlParameter("@codeRDV", rdv.CodeRDV));
             createCmd.Parameters.Add(new SqlParameter("@medecin", rdv.Medecin));
             createCmd.Parameters.Add(new SqlParameter("@date_RDV", rdv.Date));
@@ -40,10 +41,12 @@ namespace TPHopital.Classes.DAO
             if (createCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Insertion effectuée");
+                created = true;
             }
 
             createCmd.Dispose();
             connection.Close();
+            return created;
         }
 
         public Rendez_Vous Retrieve(int codeRDV)

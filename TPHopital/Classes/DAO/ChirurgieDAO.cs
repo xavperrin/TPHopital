@@ -18,8 +18,9 @@ namespace TPHopital.Classes.DAO
             listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, chirurgien, anesthesiste, facture_id FROM Traitement", connection);
         }
 
-        public void Create(Chirurgie chirurgie)
+        public bool Create(Chirurgie chirurgie)
         {
+            bool created = false;
             Task t = Task.Run(() =>
             {
                 createCmd.Parameters.Add(new SqlParameter("@date_traitement", chirurgie.Date_traitement));
@@ -35,6 +36,7 @@ namespace TPHopital.Classes.DAO
                     if (createCmd.ExecuteNonQuery() > 0)
                     {
                         Console.WriteLine("Insertion effecutée");
+                        created = true;
                     }
 
                     createCmd.Dispose();
@@ -42,6 +44,7 @@ namespace TPHopital.Classes.DAO
                 }
             });
             t.Wait();
+            return created;
         }
 
         public void Update(Chirurgie chirurgie, int id)

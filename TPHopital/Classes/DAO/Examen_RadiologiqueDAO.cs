@@ -17,8 +17,10 @@ namespace TPHopital.Classes.DAO
             listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id FROM Traitement", connection);
         }
 
-        public void Create(Examen_Radiologique examen)
+        public bool Create(Examen_Radiologique examen)
         {
+
+           bool  created = false;
             createCmd.Parameters.Add(new SqlParameter("@date_traitement", examen.Date_traitement));
             createCmd.Parameters.Add(new SqlParameter("@prix", examen.Prix_traitement));
             createCmd.Parameters.Add(new SqlParameter("@designation", examen.Designation));
@@ -31,10 +33,15 @@ namespace TPHopital.Classes.DAO
             if (createCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Insertion effecutée");
+
+                created = true;
             }
 
             createCmd.Dispose();
             connection.Close();
+
+            return created;
+            
         }
 
         public void Update(Examen_Radiologique examen, int id)

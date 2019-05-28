@@ -19,8 +19,9 @@ namespace TPHopital.Classes.DAO
             deleteCmd = new SqlCommand("DELETE FROM traitement WHERE id_traitement=@id ", connection);
         }
 
-        public  void Create(Traitement t)
+        public  bool Create(Traitement t)
         {
+            
             throw new NotImplementedException();
         }
 
