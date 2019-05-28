@@ -34,6 +34,8 @@ namespace TPHopital.Classes.DAO
 
         public bool Create(Consultation consultation)
         {
+            if (consultation == null)
+                throw new ArgumentNullException(nameof(consultation));
             bool created = false;
             Task t = Task.Run(() =>
             {
@@ -121,6 +123,8 @@ namespace TPHopital.Classes.DAO
 
         public bool Update(Consultation consultation, int id)
         {
+            if (consultation == null)
+                throw new ArgumentNullException(nameof(consultation));
             bool updated = false;
             Task t = Task.Run(() =>
             {
