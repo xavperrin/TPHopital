@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using TPHopital.Classes;
+using TPHopital.Classes.Exceptions;
 using TPHopital.Classes.DAO;
 
 namespace UnitTestProject1
@@ -44,7 +45,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestRetrieveMedecinByName()
         {
-            string name = "Muflin1954490165";
+            string name = "nom801860743";
 
             MedecinDAO dao = new MedecinDAO();
             
@@ -58,5 +59,13 @@ namespace UnitTestProject1
             
 
         }
+
+
+        
+
+
+//
+
+
     }
 }
