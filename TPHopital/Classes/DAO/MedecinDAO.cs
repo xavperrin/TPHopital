@@ -55,8 +55,9 @@ namespace TPHopital.Classes.DAO
             return created;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            bool deleted = false;
             deleteCmd.Parameters.Clear();
             deleteCmd.Parameters.Add(new SqlParameter("@id", id));
 
@@ -65,12 +66,14 @@ namespace TPHopital.Classes.DAO
             if (deleteCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Suppression effecutée");
+                deleted = true;
             }
             else
                 throw new ObjectNotFoundException("Aucun medecin n'a été trouvé avec l'identifiant " + id+". Il ne peut etre supprime.");
 
             deleteCmd.Dispose();
             connection.Close();
+            return deleted;
         }
 
         public Medecin Retrieve(int id)
@@ -132,8 +135,9 @@ namespace TPHopital.Classes.DAO
             return medecin;
         }
 
-        public void Update(Medecin medecin, int id)
+        public bool Update(Medecin medecin, int id)
         {
+            bool updated = false;
             updateCmd.Parameters.Clear();
             updateCmd.Parameters.Add(new SqlParameter("@nom", medecin.Nom_medecin));
             updateCmd.Parameters.Add(new SqlParameter("@prenom", medecin.Prenom_medecin));
@@ -144,10 +148,12 @@ namespace TPHopital.Classes.DAO
             connection.Open();
 
             if (updateCmd.ExecuteNonQuery() <= 0)
-                throw new ObjectNotFoundException("Aucun medecin n'a été trouvé avec l'identifiant " + id+". Il ne peut pas etre mis à jour.");
-
+                throw new ObjectNotFoundException("Aucun medecin n'a été trouvé avec l'identifiant " + id + ". Il ne peut pas etre mis à jour.");
+            else
+                updated = true;
             updateCmd.Dispose();
             connection.Close();
+            return updated;
         }
 
         public List<Medecin> ListAll()

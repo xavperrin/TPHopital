@@ -17,8 +17,10 @@ namespace TPHopital.Classes.DAO
             listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, Facture_id FROM Traitement", connection);
         }
 
-        public void Create(Examen_Biologique examen)
+        public bool Create(Examen_Biologique examen)
         {
+            bool created = false;
+            createCmd.Parameters.Clear();
             createCmd.Parameters.Add(new SqlParameter("@date_traitement", examen.Date_traitement));
             createCmd.Parameters.Add(new SqlParameter("@prix", examen.Prix_traitement));
             createCmd.Parameters.Add(new SqlParameter("@designation", examen.Designation));
@@ -30,10 +32,12 @@ namespace TPHopital.Classes.DAO
             if (createCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Insertion effecutée");
+                created = true;
             }
 
             createCmd.Dispose();
             connection.Close();
+            return created;
         }    
 
         public new List<Examen_Biologique> ListAll()
@@ -67,7 +71,7 @@ namespace TPHopital.Classes.DAO
         public new Examen_Biologique Retrieve(int id)
         {
             Examen_Biologique examen = null;
-
+            retrieveCmd.Parameters.Clear();
             retrieveCmd.Parameters.Add(new SqlParameter("@search", id));
 
             connection.Open();
@@ -92,8 +96,10 @@ namespace TPHopital.Classes.DAO
             return examen;
         }
 
-        public void Update(Examen_Biologique examen, int id)
+        public bool Update(Examen_Biologique examen, int id)
         {
+            bool updated = false;
+            updateCmd.Parameters.Clear();
             updateCmd.Parameters.Add(new SqlParameter("@date_traitement", examen.Date_traitement));
             updateCmd.Parameters.Add(new SqlParameter("@prix", examen.Prix_traitement));
             updateCmd.Parameters.Add(new SqlParameter("@designation", examen.Designation));
@@ -102,9 +108,13 @@ namespace TPHopital.Classes.DAO
             updateCmd.Parameters.Add(new SqlParameter("@id", id));
 
             connection.Open();
-            updateCmd.ExecuteNonQuery();
+            if (updateCmd.ExecuteNonQuery()>0)
+                updated = true;
             updateCmd.Dispose();
             connection.Close();
+            return updated;
         }
+
+       
     }
 }

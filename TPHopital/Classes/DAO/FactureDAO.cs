@@ -14,15 +14,16 @@ namespace TPHopital.Classes.DAO
         private SqlCommand deleteCmd;
         private SqlCommand listAllCmd;
         private SqlConnection connection;
+        private string TABLE="Facture";
 
         public FactureDAO()
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO Facture (date_facture, total, Admission_ID) values(@date, @total, @idAdmission)", connection);
-            retrieveCmd = new SqlCommand("SELECT * FROM Facture where id_facture like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Facture SET date_facture=@date, total=@total, Admission_ID=@idAdmission WHERE id=@id", connection);
+            createCmd = new SqlCommand("INSERT INTO "+ TABLE + " (date_facture, total, Admission_ID) values(@date, @total, @idAdmission)", connection);
+            retrieveCmd = new SqlCommand("SELECT * FROM "+ TABLE + " where id_facture like @search", connection);
+            updateCmd = new SqlCommand("UPDATE "+TABLE+" SET date_facture=@date, total=@total, Admission_ID=@idAdmission WHERE id=@id", connection);
             deleteCmd = new SqlCommand("DELETE FROM Facture WHERE id=@id ", connection);
-            listAllCmd = new SqlCommand("SELECT * FROM Facture", connection);
+            listAllCmd = new SqlCommand("SELECT * FROM "+TABLE, connection);
         }
 
         public bool Create(Facture facture)
@@ -44,8 +45,9 @@ namespace TPHopital.Classes.DAO
             return created;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            bool deleted = false;
             deleteCmd.Parameters.Add(new SqlParameter("@id", id));
 
             connection.Open();
@@ -53,15 +55,20 @@ namespace TPHopital.Classes.DAO
             if (deleteCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Suppression effecutée");
+                deleted = true;
             }
 
             deleteCmd.Dispose();
             connection.Close();
+            return deleted;
         }
 
         public Facture Retrieve(int id)
         {
             Facture facture = new Facture();
+            retrieveCmd.Parameters.Clear();
+
+
 
             retrieveCmd.Parameters.Add(new SqlParameter("@search", id));
 
@@ -84,8 +91,10 @@ namespace TPHopital.Classes.DAO
             return facture;
         }
 
-        public void Update(Facture facture, int id)
+        public bool Update(Facture facture, int id)
         {
+            bool updated = false;
+            updateCmd.Parameters.Clear();
             updateCmd.Parameters.Add(new SqlParameter("@date", facture.Date_facture));
             updateCmd.Parameters.Add(new SqlParameter("@total", facture.Total));
             updateCmd.Parameters.Add(new SqlParameter("@admission_id", facture.Admission_id));
@@ -93,9 +102,13 @@ namespace TPHopital.Classes.DAO
             updateCmd.Parameters.Add(new SqlParameter("@id", id));
 
             connection.Open();
-            updateCmd.ExecuteNonQuery();
+
+            if (updateCmd.ExecuteNonQuery() > 0)
+                updated = true;
+
             updateCmd.Dispose();
             connection.Close();
+            return updated;
         }
 
         public List<Facture> ListAll()

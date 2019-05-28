@@ -6,6 +6,7 @@ namespace TPHopital.Classes.DAO
 {
     public abstract class TraitementDAO : IDAO<Traitement, int>
     {
+        protected string TABLE="Traitement";
         protected SqlCommand createCmd;
         protected SqlCommand retrieveCmd;
         protected SqlCommand updateCmd;
@@ -16,7 +17,7 @@ namespace TPHopital.Classes.DAO
         public TraitementDAO()
         {
             connection = Connection.Instance;
-            deleteCmd = new SqlCommand("DELETE FROM traitement WHERE id_traitement=@id ", connection);
+            deleteCmd = new SqlCommand("DELETE FROM "+TABLE+" WHERE id_traitement=@id ", connection);
         }
 
         public  bool Create(Traitement t)
@@ -25,8 +26,10 @@ namespace TPHopital.Classes.DAO
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            bool deleted = false;
+            deleteCmd.Parameters.Clear();
             deleteCmd.Parameters.Add(new SqlParameter("@id", id));
 
             connection.Open();
@@ -34,10 +37,12 @@ namespace TPHopital.Classes.DAO
             if (deleteCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Suppression effecutée");
+                deleted = true;
             }
 
             deleteCmd.Dispose();
             connection.Close();
+            return deleted;
         }
 
         public List<Traitement> ListAll()
@@ -50,7 +55,7 @@ namespace TPHopital.Classes.DAO
             throw new NotImplementedException();
         }
 
-        public void Update(Traitement t, int id)
+        public bool Update(Traitement t, int id)
         {
             throw new NotImplementedException();
         }

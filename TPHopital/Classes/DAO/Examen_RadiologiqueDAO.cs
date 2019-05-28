@@ -11,10 +11,10 @@ namespace TPHopital.Classes.DAO
         public Examen_RadiologiqueDAO()
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO Traitement (date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id) values(@date, @prix, @designation, @resultat, @image, @facture_id )", connection);
-            retrieveCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id FROM Traitement where id_traitement like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Traitement SET date_traitement=@date, prix_traitement=@prix, designation=@designation, Resultat_examen=@resultat, image=@image, facture_id=@facture_id WHERE id_traitement=@id", connection);
-            listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id FROM Traitement", connection);
+            createCmd = new SqlCommand("INSERT INTO "+TABLE+" (date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id) values(@date, @prix, @designation, @resultat, @image, @facture_id )", connection);
+            retrieveCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id FROM " + TABLE + " where id_traitement like @search", connection);
+            updateCmd = new SqlCommand("UPDATE " + TABLE + " SET date_traitement=@date, prix_traitement=@prix, designation=@designation, Resultat_examen=@resultat, image=@image, facture_id=@facture_id WHERE id_traitement=@id", connection);
+            listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, designation, Resultat_examen, image, facture_id FROM " + TABLE , connection);
         }
 
         public bool Create(Examen_Radiologique examen)
@@ -44,8 +44,10 @@ namespace TPHopital.Classes.DAO
             
         }
 
-        public void Update(Examen_Radiologique examen, int id)
+        public bool Update(Examen_Radiologique examen, int id)
         {
+            bool updated = false;
+            updateCmd.Parameters.Clear();
             updateCmd.Parameters.Add(new SqlParameter("@date_traitement", examen.Date_traitement));
             updateCmd.Parameters.Add(new SqlParameter("@prix", examen.Prix_traitement));
             updateCmd.Parameters.Add(new SqlParameter("@designation", examen.Designation));
@@ -56,9 +58,11 @@ namespace TPHopital.Classes.DAO
             updateCmd.Parameters.Add(new SqlParameter("@id", id));
 
             connection.Open();
-            updateCmd.ExecuteNonQuery();
+            if (updateCmd.ExecuteNonQuery() > 0)
+                updated = true;
             updateCmd.Dispose();
             connection.Close();
+            return updated;
         }
 
         public new List<Examen_Radiologique> ListAll()

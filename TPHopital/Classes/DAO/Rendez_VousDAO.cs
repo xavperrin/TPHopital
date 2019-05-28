@@ -30,6 +30,7 @@ namespace TPHopital.Classes.DAO
         public bool Create(Rendez_Vous rdv)
         {
             bool created = false;
+            createCmd.Parameters.Clear();
             createCmd.Parameters.Add(new SqlParameter("@codeRDV", rdv.CodeRDV));
             createCmd.Parameters.Add(new SqlParameter("@medecin", rdv.Medecin));
             createCmd.Parameters.Add(new SqlParameter("@date_RDV", rdv.Date));
@@ -72,8 +73,10 @@ namespace TPHopital.Classes.DAO
             return rdv;
         }
 
-        public void Update(Rendez_Vous rdv, int codeRDV)
+        public bool Update(Rendez_Vous rdv, int codeRDV)
         {
+            bool updated = false;
+            updateCmd.Parameters.Clear();
             updateCmd.Parameters.Add(new SqlParameter("@medecin", rdv.Medecin));
             updateCmd.Parameters.Add(new SqlParameter("@date_RDV", rdv.Date));
             updateCmd.Parameters.Add(new SqlParameter("@service", rdv.Status));
@@ -82,22 +85,27 @@ namespace TPHopital.Classes.DAO
             updateCmd.Parameters.Add(new SqlParameter("@codeRDV", codeRDV));
 
             connection.Open();
-            updateCmd.ExecuteNonQuery();
+            if (updateCmd.ExecuteNonQuery() > 0)
+                updated = true;
             updateCmd.Dispose();
             connection.Close();
+            return updated;
         }
 
 
-        public void Delete(int codeRDV)
+        public bool Delete(int codeRDV)
         {
+            bool deleted = false;
             deleteCmd.Parameters.Add(new SqlParameter("@codeRDV", codeRDV));
             connection.Open();
             if (deleteCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Suppression effectuée");
+                deleted = true;
             }
             deleteCmd.Dispose();
             connection.Close();
+            return deleted;
         }
 
         public List<Rendez_Vous> ListAll()

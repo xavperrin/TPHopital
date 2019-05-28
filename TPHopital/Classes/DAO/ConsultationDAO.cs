@@ -32,8 +32,9 @@ namespace TPHopital.Classes.DAO
             deleteCmd = new SqlCommand("DELETE FROM Consultation WHERE id_consultation=@id ", connection);
         }
 
-        public void Create(Consultation consultation)
+        public bool Create(Consultation consultation)
         {
+            bool created = false;
             Task t = Task.Run(() =>
             {
                 createCmd.Parameters.Add(new SqlParameter("@date", consultation.Date_consultation));
@@ -50,6 +51,7 @@ namespace TPHopital.Classes.DAO
                     if (createCmd.ExecuteNonQuery() > 0)
                     {
                         Console.WriteLine("Insertion effecutée");
+                        created = true;
                     }
 
                     createCmd.Dispose();
@@ -57,10 +59,12 @@ namespace TPHopital.Classes.DAO
                 }
             });
             t.Wait();
+            return created;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+           bool deleted = false;
             Task.Run(() =>
             {
                 deleteCmd.Parameters.Add(new SqlParameter("@id", id));
@@ -71,12 +75,14 @@ namespace TPHopital.Classes.DAO
                     if (deleteCmd.ExecuteNonQuery() > 0)
                     {
                         Console.WriteLine("Suppression effecutée");
+                        deleted = true;
                     }
 
                     deleteCmd.Dispose();
                     connection.Close();
                 }
             });
+            return deleted;
         }
 
 
@@ -113,8 +119,9 @@ namespace TPHopital.Classes.DAO
             return t.Result;
         }
 
-        public void Update(Consultation consultation, int id)
+        public bool Update(Consultation consultation, int id)
         {
+            bool updated = false;
             Task t = Task.Run(() =>
             {
                 updateCmd.Parameters.Add(new SqlParameter("@date", consultation.Date_consultation));
@@ -129,11 +136,13 @@ namespace TPHopital.Classes.DAO
                 lock (new object())
                 {
                     Connection.Instance.Open();
-                    updateCmd.ExecuteNonQuery();
+                    if (updateCmd.ExecuteNonQuery() > 0)
+                        updated = true;
                     updateCmd.Dispose();
                     connection.Close();
                 }
             });
+            return updated;
         }
 
         public List<Consultation> ListAll()

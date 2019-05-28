@@ -39,6 +39,7 @@ namespace TPHopital.Classes.DAO
         public bool Create(Hospitalisation hospitalisation)
         {
             bool created = false;
+            createCmd.Parameters.Clear();
             createCmd.Parameters.Add(new SqlParameter("@date_admission", hospitalisation.Date_admission));
             createCmd.Parameters.Add(new SqlParameter("@type_admission", hospitalisation.Type_admission));
             createCmd.Parameters.Add(new SqlParameter("@motif_admission", hospitalisation.Motif_admission));
@@ -77,8 +78,10 @@ namespace TPHopital.Classes.DAO
             return created;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            bool deleted = false;
+            deleteCmd.Parameters.Clear();
             deleteCmd.Parameters.Add(new SqlParameter("@id", id));
 
             connection.Open();
@@ -86,12 +89,14 @@ namespace TPHopital.Classes.DAO
             if (deleteCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Suppression effecutée");
+                deleted = true;
             }
             else
                 throw new ObjectNotFoundException("Aucune hospitalisation n'a été trouvée avec l'identifiant " + id + ". Elle ne peut etre supprimee.");
 
             deleteCmd.Dispose();
             connection.Close();
+            return deleted;
         }
 
         public Hospitalisation Retrieve(int id)
@@ -135,8 +140,10 @@ namespace TPHopital.Classes.DAO
             return hospitalisation;
         }
 
-        public void Update(Hospitalisation hospitalisation, int id)
+        public bool Update(Hospitalisation hospitalisation, int id)
         {
+            bool updated = false; 
+            updateCmd.Parameters.Clear();
             updateCmd.Parameters.Add(new SqlParameter("@date_admission", hospitalisation.Date_admission));
             updateCmd.Parameters.Add(new SqlParameter("@type_admission", hospitalisation.Type_admission));
             updateCmd.Parameters.Add(new SqlParameter("@motif_admission", hospitalisation.Motif_admission));
@@ -167,10 +174,12 @@ namespace TPHopital.Classes.DAO
 
             if (updateCmd.ExecuteNonQuery() <= 0)
                 throw new ObjectNotFoundException("Aucune hospitalisation n'a été trouvée avec l'identifiant " + id + ". Elle ne peut pas etre mise à jour.");
-
+            else
+                updated = true;
 
             updateCmd.Dispose();
             connection.Close();
+            return updated;
         }
 
         public List<Hospitalisation> ListAll()

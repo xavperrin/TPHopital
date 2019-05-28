@@ -8,8 +8,8 @@ namespace TPHopital.Classes.DAO
     {
         bool Create(T t) ;
         T Retrieve(ID id);
-        void Update(T t, ID id);
-        void Delete(ID id);
+        bool Update(T t, ID id);
+        bool Delete(ID id);
         List<T> ListAll();
     }
 }

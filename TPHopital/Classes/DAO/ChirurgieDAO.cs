@@ -12,10 +12,10 @@ namespace TPHopital.Classes.DAO
         public ChirurgieDAO()
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO Traitement (date_traitement, prix_traitement, chirurgien, anesthesiste, facture_id) values(@date, @prix, @chirurgien, @anesthesiste)", connection);
-            retrieveCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, chirurgien, anesthesiste, facture_id FROM Traitement where id_traitement like @search", connection);
-            updateCmd = new SqlCommand("UPDATE Traitement SET date_traitement=@date, prix_traitement=@prix, chirurgien=@chirurgien, anesthesiste=@anesthesiste, facture_id=@facture_id WHERE id_traitement=@id", connection);
-            listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, chirurgien, anesthesiste, facture_id FROM Traitement", connection);
+            createCmd = new SqlCommand("INSERT INTO "+TABLE+" (date_traitement, prix_traitement, chirurgien, anesthesiste, facture_id) values(@date, @prix, @chirurgien, @anesthesiste)", connection);
+            retrieveCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, chirurgien, anesthesiste, facture_id FROM "+ TABLE + " where id_traitement like @search", connection);
+            updateCmd = new SqlCommand("UPDATE "+ TABLE + " SET date_traitement=@date, prix_traitement=@prix, chirurgien=@chirurgien, anesthesiste=@anesthesiste, facture_id=@facture_id WHERE id_traitement=@id", connection);
+            listAllCmd = new SqlCommand("SELECT id_traitement, date_traitement, prix_traitement, chirurgien, anesthesiste, facture_id FROM "+TABLE, connection);
         }
 
         public bool Create(Chirurgie chirurgie)
@@ -47,8 +47,9 @@ namespace TPHopital.Classes.DAO
             return created;
         }
 
-        public void Update(Chirurgie chirurgie, int id)
+        public bool Update(Chirurgie chirurgie, int id)
         {
+            bool updated = false;
             Task.Run(() =>
             {
                 updateCmd.Parameters.Add(new SqlParameter("@date_traitement", chirurgie.Date_traitement));
@@ -62,11 +63,13 @@ namespace TPHopital.Classes.DAO
                 lock (new object())
                 {
                     connection.Open();
-                    updateCmd.ExecuteNonQuery();
+                    if (updateCmd.ExecuteNonQuery() > 0)
+                        updated = true;
                     updateCmd.Dispose();
                     connection.Close();
                 }
             });
+            return updated;
         }
 
         public new List<Chirurgie> ListAll()
@@ -138,5 +141,7 @@ namespace TPHopital.Classes.DAO
 
             return t.Result;
         }
+
+       
     }
 }

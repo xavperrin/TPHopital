@@ -67,8 +67,9 @@ namespace TPHopital.Classes.DAO
             return created;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            bool deleted = false;
             Task.Run(() =>
             {
                 deleteCmd.Parameters.Add(new SqlParameter("@id", id));
@@ -79,12 +80,15 @@ namespace TPHopital.Classes.DAO
                     if (deleteCmd.ExecuteNonQuery() > 0)
                     {
                         Console.WriteLine("Suppression effecutée");
+                        deleted = true;
                     }
+                     
 
                     deleteCmd.Dispose();
                     connection.Close();
                 }
             });
+            return deleted;
         }
 
         public Patient Retrieve(int id)
@@ -129,10 +133,12 @@ namespace TPHopital.Classes.DAO
             return t.Result;
         }
 
-        public void Update(Patient patient, int id)
+        public bool Update(Patient patient, int id)
         {
+            bool updated = false;
             Task t = Task.Run(() =>
             {
+                updateCmd.Parameters.Clear();
                 updateCmd.Parameters.Add(new SqlParameter("@nom", patient.NomPatient));
                 updateCmd.Parameters.Add(new SqlParameter("@prenom", patient.PrenomPatient));
                 updateCmd.Parameters.Add(new SqlParameter("@date", patient.DateNaissance));
@@ -152,11 +158,14 @@ namespace TPHopital.Classes.DAO
                     updateCmd.Parameters.Add(new SqlParameter("@id", id));
 
                     connection.Open();
-                    updateCmd.ExecuteNonQuery();
+                    if (updateCmd.ExecuteNonQuery() > 0)
+                        updated = true;
                     updateCmd.Dispose();
                     connection.Close();
+                    
                 }
             });
+            return updated;
         }
 
         public List<Patient> ListAll()

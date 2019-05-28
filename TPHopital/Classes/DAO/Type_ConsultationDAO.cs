@@ -42,8 +42,9 @@ namespace TPHopital.Classes.DAO
             return created;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            bool deleted = false;
             deleteCmd.Parameters.Add(new SqlParameter("@id", id));
 
             connection.Open();
@@ -51,10 +52,12 @@ namespace TPHopital.Classes.DAO
             if (deleteCmd.ExecuteNonQuery() > 0)
             {
                 Console.WriteLine("Suppression effecutée");
+                deleted = true;
             }
 
             deleteCmd.Dispose();
             connection.Close();
+            return deleted;
         }        
 
         public Type_Consultation Retrieve(int id)
@@ -81,17 +84,20 @@ namespace TPHopital.Classes.DAO
             return tc;
         }
 
-        public void Update(Type_Consultation tc, int id)
+        public bool Update(Type_Consultation tc, int id)
         {
+            bool updated = false;
             updateCmd.Parameters.Add(new SqlParameter("@type", tc.Type_consultation));
             updateCmd.Parameters.Add(new SqlParameter("@prix", tc.Prix_consultation));
 
             updateCmd.Parameters.Add(new SqlParameter("@id", id));
 
             connection.Open();
-            updateCmd.ExecuteNonQuery();
+            if (updateCmd.ExecuteNonQuery() > 0)
+                updated = true;
             updateCmd.Dispose();
             connection.Close();
+            return updated;
         }
 
         public List<Type_Consultation> ListAll()
