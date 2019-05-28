@@ -22,7 +22,7 @@ namespace TPHopital.Classes.DAO
         public MedecinDAO() 
         {
             connection = Connection.Instance;
-            createCmd = new SqlCommand("INSERT INTO Medecin ("+COLUMNS+") values(@nom, @prenom, @tel)", connection);
+            createCmd = new SqlCommand("INSERT INTO "+TABLE+" ("+COLUMNS+") values(@nom, @prenom, @tel)", connection);
             retrieveCmd = new SqlCommand("SELECT id_medecin, " + COLUMNS + " FROM Medecin where id_medecin like @search", connection);
             retrievebynameCmd = new SqlCommand("SELECT id_medecin, " + COLUMNS + " FROM Medecin where nom_medecin like @searchname", connection);
             updateCmd = new SqlCommand("UPDATE "+ TABLE + " SET nom_medecin=@nom, prenom_medecin=@prenom, tel_medecin=@tel WHERE id_medecin=@id", connection);
@@ -37,6 +37,8 @@ namespace TPHopital.Classes.DAO
         public bool Create(Medecin medecin)
         {
             bool created = false;
+            if (medecin == null)
+                throw new ArgumentNullException(nameof(medecin));
             createCmd.Parameters.Clear();
 
             createCmd.Parameters.Add(new SqlParameter("@nom", medecin.Nom_medecin));
@@ -138,6 +140,8 @@ namespace TPHopital.Classes.DAO
         public bool Update(Medecin medecin, int id)
         {
             bool updated = false;
+            if(medecin==null)
+                throw new ArgumentNullException(nameof(medecin));
             updateCmd.Parameters.Clear();
             updateCmd.Parameters.Add(new SqlParameter("@nom", medecin.Nom_medecin));
             updateCmd.Parameters.Add(new SqlParameter("@prenom", medecin.Prenom_medecin));
