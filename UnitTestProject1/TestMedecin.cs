@@ -27,17 +27,17 @@ namespace UnitTestProject1
         public void TestCreateMedecin()
         {
             Random random = new Random();
-            int randomnumber=random.Next(10000000, 20000000);
+            int randomnumber=random.Next(90000000, 990000990);
             string nom = "nom"+ randomnumber;
             string prenom = "prénom"+ randomnumber;
             string tel = "0651155";
             Medecin m = new Medecin(nom, prenom, tel);
 
             MedecinDAO daomed = new MedecinDAO();
-            daomed.Create(m);
+            bool inserted =daomed.Create(m);
+            Assert.IsTrue(inserted);
 
 
-            
 
 
         }
