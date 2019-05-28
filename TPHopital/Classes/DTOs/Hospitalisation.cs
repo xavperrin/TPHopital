@@ -69,6 +69,21 @@ namespace TPHopital.Classes
         public int Patient_id { get => patient_id; set => patient_id = value; }
         public int Traitement_id { get => traitement_id; set => traitement_id = value; }
 
+        
+
+        public override bool CheckData()
+        {
+            if (date_admission == null)
+                return false;
+            if (type_admission == "")
+                return false;
+            if (type_admission == null)
+                return false;
+            if (motif_admission == "")
+                return false;
+            else return true;
+        }
+
         public override string ToString()
         {
             return "Hospitalisation (id:" + id_admission + ", date admission:" + date_admission + ", type:" + type_admission + ", motif:" + motif_admission +

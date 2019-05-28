@@ -11,35 +11,50 @@ namespace TPHopital.Classes
         private string medecin;
         private int id_patient;
         private DateTime date;
-        private ServiceStatus status;
+        private ServiceEnum service;
 
         public int CodeRDV { get => codeRDV; set => codeRDV = value; }
         public string Medecin { get => medecin; set => medecin = value; }
         public int Id_patient { get => id_patient; set => id_patient = value; }
         public DateTime Date { get => date; set => date = value; }
-        public ServiceStatus Status { get => status; set => status = value; }
+        public ServiceEnum Service { get => service; set => service = value; }
 
         public Rendez_Vous()
         {
         }
 
-        public Rendez_Vous(int codeRDV, string medecin, int id_patient, DateTime date, ServiceStatus status)
+        public Rendez_Vous(int codeRDV, string medecin, int id_patient, DateTime date, ServiceEnum service)
         {
             CodeRDV = codeRDV;
             Medecin = medecin;
             Id_patient = id_patient;
-            Date = Date;
-            Status = status;
+            Date = date;
+            Service = service;
         }
 
         public override string ToString()
         {
-            return "Rendez_Vous (Code Rendez-Vous :" + CodeRDV + "Nom du Medecin:" + Medecin + " Id patient :" + Id_patient + " Date du Rdv:" + Date + " Service :" + Status + ")";
+            return "Rendez_Vous (Code Rendez-Vous :" + CodeRDV + "Nom du Medecin:" + Medecin + " Id patient :" + Id_patient + " Date du Rdv:" + Date + " Service :" + Service + ")";
+        }
+
+        public override bool CheckData()
+        {
+             if (Enum.IsDefined(typeof(ServiceEnum), Service))
+                return false;
+            if (medecin == "")
+                return false;
+            if (medecin == null)
+                return false;
+            if (id_patient <0)
+                return false;
+            if (date == null)
+                return false;
+            else return true;
         }
     }
 }
 
-public enum ServiceStatus
+public enum ServiceEnum
 {
     Cardiologie,
     Neurologie,

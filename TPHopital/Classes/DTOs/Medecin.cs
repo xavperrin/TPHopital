@@ -28,6 +28,19 @@ namespace TPHopital.Classes
         public string Prenom_medecin { get => prenom_medecin; set => prenom_medecin = value; }
         public string Tel_medecin { get => tel_medecin; set => tel_medecin = value; }
 
+        public override bool CheckData()
+        {
+            if (Nom_medecin == null)
+                return false;
+            if (Nom_medecin == "")
+                return false;
+            if (Prenom_medecin == null)
+                return false;
+            if (Prenom_medecin == "")
+                return false;
+            else return true;
+        }
+
         public override string ToString()
         {
             return "Medecin (id :"+Id_medecin+"nom:"+ Nom_medecin+" prenom:"+ Prenom_medecin+" telephone:"+Tel_medecin+")";

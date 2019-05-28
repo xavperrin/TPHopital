@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TPHopital.Classes.DTOs;
 
 namespace TPHopital.Classes
 {
-   public abstract  class Traitement
+   public abstract  class Traitement:DTO
     {
         protected int id_traitement;
         protected DateTime date_traitement;

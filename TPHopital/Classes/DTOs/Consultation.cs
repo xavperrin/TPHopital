@@ -38,6 +38,17 @@ namespace TPHopital.Classes.DTOs
         public int Prescription_id { get => prescription_id; set => prescription_id = value; }
         public int Medecin_id { get => medecin_id; set => medecin_id = value; }
 
+        public override bool CheckData()
+        {
+            if (this.Date_consultation == null)
+                return false;
+            if (synthese == "")
+                return false;
+            if (synthese == null)
+                return false;
+            else return true;
+        }
+
         public override string ToString()
         {
             return "Consultation (id:" + id_consultation + "date:" + date_consultation + "Synthèse:" + type_consultation_id + "rdv code:" + rdv_code + "id prescription:" + prescription_id + "id medecin:" + medecin_id + ")";

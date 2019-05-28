@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TPHopital.Classes.DTOs;
 
 namespace TPHopital.Classes
 {
-    public class Patient
+    public class Patient :DTO
     {
         private int id_Patient;
         private string nomPatient;
@@ -59,6 +60,20 @@ namespace TPHopital.Classes
         public string Nom_P_a_prevenir { get => nom_P_a_prevenir; set => nom_P_a_prevenir = value; }
         public string Tel_P_a_prevenir { get => tel_P_a_prevenir; set => tel_P_a_prevenir = value; }
 
+        public override bool CheckData()
+        {
+            if (NomPatient == null)
+                return false;
+            if (NomPatient == "")
+                return false;
+            if (PrenomPatient == null)
+                return false;
+            if (PrenomPatient == "")
+                return false;
+            if (DateNaissance == null)
+                return false;
+            else return true;
+        }
         public override string ToString()
         {
             return "Medecin (id :" + Id_Patient + " nom:" + NomPatient + " prenom: " + PrenomPatient + " date de naissance: " + DateNaissance +

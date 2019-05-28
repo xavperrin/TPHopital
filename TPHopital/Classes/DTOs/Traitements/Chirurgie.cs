@@ -14,18 +14,32 @@ namespace TPHopital.Classes.Traitements
 
         }
 
-        public Chirurgie(string chirurgien, string anesthesiste)
+        public Chirurgie(DateTime date_chirurgie, decimal prix_chirurgie,  string chirurgien, string anesthesiste)
         {
-            this.chirurgien = chirurgien;
-            this.anesthesiste = anesthesiste;
+            Date_traitement=date_chirurgie;
+            Prix_traitement =prix_chirurgie;
+            Chirurgien = chirurgien;
+            Anesthesiste = anesthesiste;
         }
 
         public string Chirurgien { get => chirurgien; set => chirurgien = value; }
         public string Anesthesiste { get => anesthesiste; set => anesthesiste = value; }
 
+
+        public override bool CheckData()
+        {
+            if ((chirurgien == null) || (chirurgien==""))
+                return false;
+            if (Date_traitement == null)
+                return false;
+            if (Prix_traitement < 0)
+                return false;
+
+            else return true;
+        }
         public override string ToString()
         {
-            return base.ToString() + "\nChirurgie (chirurgien: " + chirurgien + ", anesthesiste: " + anesthesiste + ")";
+            return  "\nChirurgie (chirurgien: " + chirurgien + ", anesthesiste: " + anesthesiste + ")";
         }
     }
 }

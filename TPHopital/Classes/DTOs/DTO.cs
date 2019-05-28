@@ -6,5 +6,8 @@ namespace TPHopital.Classes.DTOs
 {
     public abstract class DTO
     {
+
+        public abstract bool CheckData();
     }
+
 }

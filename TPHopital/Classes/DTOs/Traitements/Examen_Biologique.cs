@@ -14,14 +14,28 @@ namespace TPHopital.Classes.Traitements
 
         }
 
-        public Examen_Biologique(string designation, string resultat_examen)
+        public Examen_Biologique(DateTime date_examen, decimal prix_examen, string designation, string resultat_examen)
         {
-            this.designation = designation;
-            this.resultat_examen = resultat_examen;
+            Date_traitement = date_examen;
+            Prix_traitement = prix_examen;
+            Designation = designation;
+            Resultat_examen = resultat_examen;
         }
 
         public string Designation { get => designation; set => designation = value; }
         public string Resultat_examen { get => resultat_examen; set => resultat_examen = value; }
+
+        public override bool CheckData()
+        {
+            if ((Designation == null) || (Designation == ""))
+                return false;
+            if (Date_traitement == null)
+                return false;
+            if (Prix_traitement < 0)
+                return false;
+
+            else return true;
+        }
 
         public override string ToString()
         {

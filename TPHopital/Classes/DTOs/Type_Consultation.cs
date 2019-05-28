@@ -27,6 +27,19 @@ namespace TPHopital.Classes
         public string Type_consultation { get => type_consultation; set => type_consultation = value; }
         public decimal Prix_consultation { get => prix_consultation; set => prix_consultation = value; }
 
+
+        public override bool CheckData()
+        {
+
+            if (type_consultation == "")
+                return false;
+            if (type_consultation == null)
+                return false;
+            if (prix_consultation < 0)
+                return false;
+            
+            else return true;
+        }
         public override string ToString()
         {
             return "Type consultation (id:" + id_type_consultation + ", type:" + type_consultation + ", prix:" + prix_consultation + "€";

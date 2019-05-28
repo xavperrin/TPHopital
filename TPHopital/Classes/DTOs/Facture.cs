@@ -29,6 +29,13 @@ namespace TPHopital.Classes.DTOs
         public decimal Total { get => total; set => total = value; }
         public int Admission_id { get => admission_id; set => admission_id = value; }
 
+        public override bool CheckData()
+        {
+            if (date_facture == null)
+                return false;
+            else return true;
+        }
+
         public override string ToString()
         {
             return "Facture (id :"+id_facture+", date : "+date_facture+", total : "+total;
