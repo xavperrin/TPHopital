@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TPHopital.Classes
+namespace TPHopital.Classes.DTOs
 {
-    class Medecin
+    public abstract class DTO
     {
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TPHopital.Classes
+namespace TPHopital.Classes.Facades
 {
-    class Facture
+    public class FacadeUsager
     {
     }
 }
