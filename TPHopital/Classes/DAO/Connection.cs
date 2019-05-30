@@ -5,7 +5,7 @@ namespace TPHopital.Classes.DAO
     public class Connection
     {
         private static SqlConnection instance = null;
-        private static object _lock = new object();
+        private static readonly object _lock = new object();
 
         public static SqlConnection Instance
         {

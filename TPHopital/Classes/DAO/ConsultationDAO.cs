@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TPHopital.Classes.DAO
 {
-    public class ConsultationDAO : IDAO<Consultation, Int32>
+    public class ConsultationDAO : IDAO<Consultation, int>
     {
         private SqlCommand createCmd;
         private SqlCommand retrieveCmd;
