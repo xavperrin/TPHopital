@@ -28,10 +28,10 @@ namespace UnitTestProject1
         public void TestCreateMedecin()
         {
             Random random = new Random();
-            int randomnumber=random.Next(90000000, 990000990);
+            int randomnumber = random.Next(90000000, 990000990);
             string nom = "nom"+ randomnumber;
             string prenom = "prénom"+ randomnumber;
-            string tel = "0651155";
+            string tel = "0651122";
             Medecin m = new Medecin(nom, prenom, tel);
 
             MedecinDAO daomed = new MedecinDAO();

@@ -74,7 +74,7 @@ namespace TPHopital.Classes.DAO
             {
 
                 
-                if (createCmd != null) retrieveCmd.Dispose();
+                if (createCmd != null) createCmd.Dispose();
                 if (connection != null) connection.Close();
           
                
@@ -208,7 +208,7 @@ namespace TPHopital.Classes.DAO
             finally
             {
                 if (reader != null) reader.Close();
-                if (retrieveCmd != null) retrieveCmd.Dispose();
+                if (retrievebynameCmd != null) retrievebynameCmd.Dispose();
                 if (connection != null) connection.Close();
             }
             return medecin;
