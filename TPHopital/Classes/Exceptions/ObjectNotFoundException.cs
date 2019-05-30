@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace TPHopital.Classes.DAO
 {
     [Serializable]
-    internal class ObjectNotFoundException : Exception
+    public class ObjectNotFoundException : Exception
     {
         public ObjectNotFoundException()
         {

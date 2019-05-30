@@ -45,7 +45,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestRetrieveMedecinByName()
         {
-            string name = "nom801860743";
+            string name = "nom794330291";
 
             MedecinDAO dao = new MedecinDAO();
             
