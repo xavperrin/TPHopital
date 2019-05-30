@@ -27,7 +27,7 @@ namespace TPHopital.Classes.DAO
         private readonly string updateTxt;
         private readonly string deleteTxt;
         private readonly string retrieveByNameTxt;
-        private readonly string listaAllTxt;
+        private readonly string listAllTxt;
 
         public MedecinDAO() 
         {
@@ -39,7 +39,7 @@ namespace TPHopital.Classes.DAO
             deleteTxt = "DELETE FROM " + TABLE + " WHERE id_medecin=@id ";
 
             retrieveByNameTxt = "SELECT id_medecin, " + COLUMNS + " FROM Medecin where nom_medecin like @searchname";
-            listaAllTxt= "SELECT " + COLUMNS + " FROM " + TABLE;
+            listAllTxt= "SELECT " + COLUMNS + " FROM " + TABLE;
 
         }
 
@@ -201,15 +201,24 @@ namespace TPHopital.Classes.DAO
             }
             catch (SqlException e)
             {
-
-                DisplaySqlException("Cannot close connection", e);
-                throw new DataAccessException("Cannot close the database connection", e);
+                // A Severe SQL Exception is caught
+                DisplaySqlException(e);
+                throw new DataAccessException("Cannot get data from the database: " + e.Message, e);
             }
             finally
+            //Close
             {
-                if (reader != null) reader.Close();
-                if (retrievebynameCmd != null) retrievebynameCmd.Dispose();
-                if (connection != null) connection.Close();
+                try
+                {
+                    if (reader != null) reader.Close();
+                    if (retrievebynameCmd != null) retrievebynameCmd.Dispose();
+                    if (connection != null) connection.Close();
+                }
+                catch (SqlException ex)
+                {
+                    DisplaySqlException("Cannot close connection", ex);
+                    throw new DataAccessException("Cannot close the database connection", ex);
+                }
             }
             return medecin;
         }
@@ -220,56 +229,104 @@ namespace TPHopital.Classes.DAO
             updateCmd = null;
             if (medecin==null)
                 throw new ArgumentNullException(nameof(medecin));
-            updateCmd = new SqlCommand(updateTxt, connection);
-            updateCmd.Parameters.Clear();
-            updateCmd.Parameters.Add(new SqlParameter("@nom", medecin.Nom_medecin));
-            updateCmd.Parameters.Add(new SqlParameter("@prenom", medecin.Prenom_medecin));
-            updateCmd.Parameters.Add(new SqlParameter("@tel", medecin.Tel_medecin));
+            try
+            {
+                updateCmd = new SqlCommand(updateTxt, connection);
+                updateCmd.Parameters.Clear();
+                updateCmd.Parameters.Add(new SqlParameter("@nom", medecin.Nom_medecin));
+                updateCmd.Parameters.Add(new SqlParameter("@prenom", medecin.Prenom_medecin));
+                updateCmd.Parameters.Add(new SqlParameter("@tel", medecin.Tel_medecin));
 
-            updateCmd.Parameters.Add(new SqlParameter("@id", id));
+                updateCmd.Parameters.Add(new SqlParameter("@id", id));
 
-            connection.Open();
+                connection.Open();
 
-            if (updateCmd.ExecuteNonQuery() <= 0)
-                throw new ObjectNotFoundException("Aucun medecin n'a été trouvé avec l'identifiant " + id + ". Il ne peut pas etre mis à jour.");
-            else
-                updated = true;
-            updateCmd.Dispose();
-            connection.Close();
+                if (updateCmd.ExecuteNonQuery() <= 0)
+                    throw new ObjectNotFoundException("Aucun medecin n'a été trouvé avec l'identifiant " + id + ". Il ne peut pas etre mis à jour.");
+                else
+                    updated = true;
+            }
+            catch (SqlException ex)
+            {
+
+                // A Severe SQL Exception is caught
+                DisplaySqlException(ex);
+                throw new DataAccessException("Cannot update data into the database", ex);
+            }
+            finally
+            {
+                //Close
+                try
+                {
+                    if (updateCmd != null) createCmd.Dispose();
+                    if (connection != null) connection.Close();
+                }
+                catch (SqlException e)
+                {
+
+                    DisplaySqlException("Cannot close connection", e);
+                    throw new DataAccessException("Cannot close the database connection", e);
+                }
+            }
             return updated;
         }
 
         public List<Medecin> ListAll()
         {
             listAllCmd = null;
-            List<Medecin> listMedecin = new List<Medecin>();
-            listAllCmd = new SqlCommand(listaAllTxt, connection);
-            connection.Open();
-            
-            SqlDataReader reader = listAllCmd.ExecuteReader();
+            SqlDataReader reader = null;
+            List<Medecin> listMedecins = new List<Medecin>();
 
-            while (reader.Read())
+            try
             {
-                listMedecin.Add(new Medecin
+                listAllCmd = new SqlCommand(listAllTxt, connection);
+                connection.Open();
+
+                reader = listAllCmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    Id_medecin = reader.GetInt32(0),
-                    Nom_medecin = reader.GetString(1),
-                    Prenom_medecin = reader.GetString(2),
-                    Tel_medecin = reader.GetString(3)
-                });
+                    listMedecins.Add(new Medecin
+                    {
+                        Id_medecin = reader.GetInt32(0),
+                        Nom_medecin = reader.GetString(1),
+                        Prenom_medecin = reader.GetString(2),
+                        Tel_medecin = reader.GetString(3)
+                    });
+                }
+
+                if (listMedecins != null && listMedecins.Count == 0)
+                    throw new ObjectNotFoundException();
             }
 
-            reader.Close();
-            retrieveCmd.Dispose();
-            connection.Close();
+            catch (SqlException e)
+            {
 
-            return listMedecin;
+                DisplaySqlException(e);
+                throw new DataAccessException("Cannot get data from the database: " + e.Message, e);
+            }
+            finally
+            {
+                //Close
+                try
+                {
+                    if (reader != null) reader.Close();
+                    if (listAllCmd != null) retrieveCmd.Dispose();
+                    if (connection != null) connection.Close();
+                }
+                catch (SqlException e)
+                {
+                    DisplaySqlException("Cannot close connection", e);
+                    throw new DataAccessException("Cannot close the database connection", e);
+                }
+            }
+            return listMedecins;
         }
 
         private void DisplaySqlException(String message, SqlException e)
         {
-            const String mname = "displaySqlException";
-
+            const String mname = "DisplaySqlException";
+            Trace.TraceWarning(sname, mname, "Message     : " + message);
             Trace.TraceWarning(sname, mname, "Error code  : " + e.ErrorCode);
             Trace.TraceWarning(sname, mname, "SQL state   : " + e.State);
             Trace.TraceWarning(sname, mname, "SQL message : " + e.Message);
