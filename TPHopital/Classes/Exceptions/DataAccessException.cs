@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace TPHopital.Classes.Exceptions
 {
     [Serializable]
-    internal class DataAccessException : Exception
+    public class DataAccessException : Exception
     {
         public DataAccessException()
         {

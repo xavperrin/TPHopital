@@ -22,7 +22,7 @@ namespace TPHopital.Classes.DAO
 
         private readonly string TABLE = "Medecin";
         private readonly string COLUMNS = "nom_medecin, prenom_medecin, tel_medecin";
-        private readonly string createTxt;
+        private string createTxt;
         private readonly string retrieveTxt;
         private readonly string updateTxt;
         private readonly string deleteTxt;
@@ -33,7 +33,7 @@ namespace TPHopital.Classes.DAO
         {
             connection = Connection.Instance;
 
-            createTxt = "INSERT INTO " + TABLE + " (" + COLUMNS + ") values(@nom, @prenom, @tel)";
+            
             retrieveTxt = "SELECT id_medecin, " + COLUMNS + " FROM " + TABLE + " where id_medecin like @search";
             updateTxt = "UPDATE " + TABLE + " SET nom_medecin=@nom, prenom_medecin=@prenom, tel_medecin=@tel WHERE id_medecin=@id";
             deleteTxt = "DELETE FROM " + TABLE + " WHERE id_medecin=@id ";
@@ -52,8 +52,26 @@ namespace TPHopital.Classes.DAO
 
             try
             {
-                createCmd = new SqlCommand(createTxt, connection);
-                createCmd.Parameters.Clear();
+                
+                
+                if (medecin.Id_medecin != 0)
+                {
+                    
+                    createTxt = "INSERT INTO id_medecin, " + TABLE + " (" + COLUMNS + ") values(@id, @nom, @prenom, @tel)";
+
+                    createCmd = new SqlCommand(createTxt, connection);
+                    createCmd.Parameters.Clear();
+                    createCmd.Parameters.Add(new SqlParameter("@id", medecin.Id_medecin));
+
+                }
+                else
+                {
+                    createTxt = "INSERT INTO " + TABLE + " (" + COLUMNS + ") values(@nom, @prenom, @tel)";
+                    createCmd = new SqlCommand(createTxt, connection);
+                    createCmd.Parameters.Clear();
+                    
+                }
+                
                 createCmd.Parameters.Add(new SqlParameter("@nom", medecin.Nom_medecin));
                 createCmd.Parameters.Add(new SqlParameter("@prenom", medecin.Prenom_medecin));
                 createCmd.Parameters.Add(new SqlParameter("@tel", medecin.Tel_medecin));
@@ -61,7 +79,6 @@ namespace TPHopital.Classes.DAO
 
                 if (createCmd.ExecuteNonQuery() > 0)
                 {
-
                     created = true;
                 }
             }
@@ -80,6 +97,12 @@ namespace TPHopital.Classes.DAO
                
             }
             return created;
+        }
+
+        public int getUniqueId()
+        {
+            Random random = new Random();
+            return random.Next(1000, 90000);
         }
 
         public bool Delete(int id)
@@ -172,6 +195,9 @@ namespace TPHopital.Classes.DAO
             Medecin medecin = null;
             retrievebynameCmd = null;
             SqlDataReader reader = null;
+
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
 
             try
             {
