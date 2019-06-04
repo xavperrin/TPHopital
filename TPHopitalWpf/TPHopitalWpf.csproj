@@ -70,6 +70,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\DAO\ChirurgieDAO.cs" />
+    <Compile Include="Classes\DAO\Connection.cs" />
+    <Compile Include="Classes\DAO\ConsultationDAO.cs" />
+    <Compile Include="Classes\DAO\Examen_BiologiqueDAO.cs" />
+    <Compile Include="Classes\DAO\Examen_RadiologiqueDAO.cs" />
+    <Compile Include="Classes\DAO\FactureDAO.cs" />
+    <Compile Include="Classes\DAO\HospitalisationDAO.cs" />
+    <Compile Include="Classes\DAO\IDAO.cs" />
+    <Compile Include="Classes\DAO\MedecinDAO.cs" />
+    <Compile Include="Classes\DAO\PatientDAO.cs" />
+    <Compile Include="Classes\DAO\Rendez_VousDAO.cs" />
+    <Compile Include="Classes\DAO\TraitementDAO.cs" />
+    <Compile Include="Classes\DAO\Type_ConsultationDAO.cs" />
+    <Compile Include="Classes\DTOs\Consultation.cs" />
+    <Compile Include="Classes\DTOs\DTO.cs" />
+    <Compile Include="Classes\DTOs\Facture.cs" />
+    <Compile Include="Classes\DTOs\Hospitalisation.cs" />
+    <Compile Include="Classes\DTOs\Medecin.cs" />
+    <Compile Include="Classes\DTOs\Patient.cs" />
+    <Compile Include="Classes\DTOs\Prescription.cs" />
+    <Compile Include="Classes\DTOs\Rendez_Vous.cs" />
+    <Compile Include="Classes\DTOs\Traitements\Chirurgie.cs" />
+    <Compile Include="Classes\DTOs\Traitements\Examen_Biologique.cs" />
+    <Compile Include="Classes\DTOs\Traitements\Examen_Radiologique.cs" />
+    <Compile Include="Classes\DTOs\Traitements\Traitement.cs" />
+    <Compile Include="Classes\DTOs\Type_Consultation.cs" />
+    <Compile Include="Classes\Exceptions\DataAccessException.cs" />
+    <Compile Include="Classes\Exceptions\DuplicateKeyException.cs" />
+    <Compile Include="Classes\Exceptions\HospitalisationCreateException.cs" />
+    <Compile Include="Classes\Exceptions\InsertPatientException.cs" />
+    <Compile Include="Classes\Exceptions\MedecinNotFoundException.cs" />
+    <Compile Include="Classes\Exceptions\ObjectNotFoundException.cs" />
+    <Compile Include="Classes\Facades\FacadeMetier.cs" />
+    <Compile Include="Classes\Facades\FacadeUsager.cs" />
+    <Compile Include="ViewModels\MedecinsViewModel.cs" />
+    <Compile Include="Views\MedecinsWindow.xaml.cs">
+      <DependentUpon>MedecinsWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,6 +120,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MedecinsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -110,5 +152,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
