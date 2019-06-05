@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="MedecinsWindow" Height="450" Width="800">
     <Grid>
-        <ListView ItemSource="{Binding listeMedecins}" HorizontalAlignment="Left" Height="305" Margin="421,35,0,0" VerticalAlignment="Top" Width="316">
+        <ListView ItemsSource="{Binding listeMedecins}" x:Name="listViewMedecins" HorizontalAlignment="Left" Height="305" Margin="421,35,0,0" VerticalAlignment="Top" Width="316">
             <ListView.View  > 
                 <GridView>
-                    <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding Nom_Medecin}"/>
-                    <GridViewColumn Header="Prenom" Width="100" DisplayMemberBinding="{Binding Prenom_Medecin}"/>
-                    <GridViewColumn Header="Telephone" Width="100" DisplayMemberBinding="{Binding Tel_Medecin}"/>
+                    <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding Nom_medecin}"/>
+                    <GridViewColumn Header="Prenom" Width="100" DisplayMemberBinding="{Binding Prenom_medecin}"/>
+                    <GridViewColumn Header="Telephone" Width="100" DisplayMemberBinding="{Binding Tel_medecin}"/>
                 </GridView>
             </ListView.View>
         </ListView>

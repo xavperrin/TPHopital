@@ -39,7 +39,7 @@ namespace TPHopitalWpf.Classes.DAO
             deleteTxt = "DELETE FROM " + TABLE + " WHERE id_medecin=@id ";
 
             retrieveByNameTxt = "SELECT id_medecin, " + COLUMNS + " FROM Medecin where nom_medecin like @searchname";
-            listAllTxt= "SELECT " + COLUMNS + " FROM " + TABLE;
+            listAllTxt= "SELECT  id_medecin, " + COLUMNS + " FROM " + TABLE;
 
         }
 
@@ -337,7 +337,11 @@ namespace TPHopitalWpf.Classes.DAO
                 try
                 {
                     if (reader != null) reader.Close();
-                    if (listAllCmd != null) retrieveCmd.Dispose();
+                    if (listAllCmd != null)
+                    {
+                        listAllCmd.Dispose();
+                    }
+
                     if (connection != null) connection.Close();
                 }
                 catch (SqlException e)

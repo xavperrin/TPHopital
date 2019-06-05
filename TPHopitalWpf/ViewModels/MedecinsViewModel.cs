@@ -58,12 +58,13 @@ namespace TPHopitalWpf.ViewModels
         public MedecinsViewModel()
         {
             medecin = new Medecin();
-            listeMedecins = Medecin.ListAll();
-            AddCommand = new RelayCommand(AddMedecin);
+            dao = new MedecinDAO();
+            listeMedecins = new ObservableCollection<Medecin>(dao.ListAll());
+            AddCommand = new RelayCommand(AddMedecin);//Action
         }
         
 
-        private void AddMedecin ()
+        private void AddMedecin()//Action
         {
             dao.Create(medecin);
             listeMedecins.Add(medecin);
