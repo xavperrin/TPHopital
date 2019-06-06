@@ -13,7 +13,8 @@ namespace TPHopitalWpf.ViewModels
         public MedecinDAO dao { get; set; }
         public ObservableCollection<Medecin> listeMedecins { get; set; }
         public ICommand AddCommand { get; set; }
-
+        
+        public ICommand UpdateCommand { get; set; }
 
         public string Nom_Medecin
         {
@@ -61,6 +62,7 @@ namespace TPHopitalWpf.ViewModels
             dao = new MedecinDAO();
             listeMedecins = new ObservableCollection<Medecin>(dao.ListAll());
             AddCommand = new RelayCommand(AddMedecin);//Action
+            ModifyCommand = new RelayCommand(UpdateMedecin);
         }
         
 
