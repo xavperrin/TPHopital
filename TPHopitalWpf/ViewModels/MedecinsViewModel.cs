@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TPHopitalWpf.Classes;
@@ -10,11 +11,14 @@ namespace TPHopitalWpf.ViewModels
     public class MedecinsViewModel : ViewModelBase
     {
         public Medecin medecin { get; set; }
+
+        public Medecin medecinSelected { get; set; }
+
         public MedecinDAO dao { get; set; }
         public ObservableCollection<Medecin> listeMedecins { get; set; }
         public ICommand AddCommand { get; set; }
         
-        public ICommand UpdateCommand { get; set; }
+        public ICommand EditCommand { get; set; }
 
         public string Nom_Medecin
         {
@@ -55,21 +59,43 @@ namespace TPHopitalWpf.ViewModels
             }
                 }
 
-
+        
         public MedecinsViewModel()
         {
             medecin = new Medecin();
             dao = new MedecinDAO();
             listeMedecins = new ObservableCollection<Medecin>(dao.ListAll());
             AddCommand = new RelayCommand(AddMedecin);//Action
-            ModifyCommand = new RelayCommand(UpdateMedecin);
+            EditCommand = new RelayCommand(UpdateMedecin);
         }
-        
+
+        private void UpdateMedecin()
+        {
+            Nom_Medecin = medecinSelected.Nom_medecin;
+            Prenom_Medecin = medecinSelected.Prenom_medecin;
+            Tel_Medecin = medecinSelected.Tel_medecin;
+            medecin.Id_medecin = medecinSelected.Id_medecin;
+
+
+        }
 
         private void AddMedecin()//Action
         {
             dao.Create(medecin);
             listeMedecins.Add(medecin);
+
+            //soit un client qui existe à modifier
+            foreach (Medecin m in listeMedecins)
+            {
+                if (m.Id_medecin == medecin.Id_medecin)
+                {
+
+                }
+            }
+            medecin = new Medecin();
+            Nom_Medecin = "";
+            Prenom_Medecin = "";
+            Tel_Medecin = "";
         }  
     }
 }
