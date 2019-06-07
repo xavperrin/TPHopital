@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MedecinsWindow" Height="450" Width="800">
     <Grid>
-        <ListView ItemsSource="{Binding listeMedecins}" x:Name="listViewMedecins" HorizontalAlignment="Left" Height="305" Margin="421,35,0,0" VerticalAlignment="Top" Width="316">
+        <ListView SelectedItem="{Binding medecinSelected}" ItemsSource="{Binding listeMedecins}" x:Name="listViewMedecins" HorizontalAlignment="Left" Height="305" Margin="421,35,0,0" VerticalAlignment="Top" Width="316">
             <ListView.View  > 
                 <GridView>
                     <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding Nom_medecin}"/>

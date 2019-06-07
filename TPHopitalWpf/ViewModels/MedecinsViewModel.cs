@@ -2,9 +2,11 @@
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using TPHopitalWpf.Classes;
 using TPHopitalWpf.Classes.DAO;
+
 
 namespace TPHopitalWpf.ViewModels
 {
@@ -66,15 +68,24 @@ namespace TPHopitalWpf.ViewModels
             dao = new MedecinDAO();
             listeMedecins = new ObservableCollection<Medecin>(dao.ListAll());
             AddCommand = new RelayCommand(AddMedecin);//Action
-            EditCommand = new RelayCommand(UpdateMedecin);
+            EditCommand = new RelayCommand(EditMedecin);
         }
 
-        private void UpdateMedecin()
+        private void EditMedecin()
         {
-            Nom_Medecin = medecinSelected.Nom_medecin;
-            Prenom_Medecin = medecinSelected.Prenom_medecin;
-            Tel_Medecin = medecinSelected.Tel_medecin;
-            medecin.Id_medecin = medecinSelected.Id_medecin;
+            if (medecinSelected != null)
+            {
+                Nom_Medecin = medecinSelected.Nom_medecin;
+                Prenom_Medecin = medecinSelected.Prenom_medecin;
+                Tel_Medecin = medecinSelected.Tel_medecin;
+                medecin.Id_medecin = medecinSelected.Id_medecin;
+  
+            }
+            else
+                MessageBox.Show("Veuillez sélectionner un medecin!");
+
+            //dao.Update(medecin, medecin.Id_medecin);
+
 
 
         }
