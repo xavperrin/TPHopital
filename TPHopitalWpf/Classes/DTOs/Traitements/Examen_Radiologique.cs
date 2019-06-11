@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TPHopitalWpf.Classes.Traitements
+namespace TPHopitalWpfEF.Classes.Traitements
 {
     public class Examen_Radiologique : Traitement 
     {

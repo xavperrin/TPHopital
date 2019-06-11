@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TPHopitalWpf.Properties
+namespace TPHopitalWpfEF.Properties
 {
 
 

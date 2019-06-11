@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace UnitTestProject1
+namespace TPHopitalWpfEF.Classes.Exceptions
 {
     [Serializable]
     public class DuplicateKeyException : Exception

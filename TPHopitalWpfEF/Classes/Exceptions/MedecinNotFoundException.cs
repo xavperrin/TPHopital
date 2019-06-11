@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace TPHopitalWpf.Classes.Exceptions
+namespace TPHopitalWpfEF.Classes.Exceptions
 {
     public class MedecinNotFoundException : Exception
     {

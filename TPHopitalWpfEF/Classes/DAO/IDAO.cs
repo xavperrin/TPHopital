@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace TPHopitalWpf.Classes.DAO
+namespace TPHopitalWpfEF.Classes.DAO
 {
     public interface IDAO<T, ID>
     {

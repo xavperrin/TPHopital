@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace TPHopitalWpf.Classes.DAO
+namespace TPHopitalWpfEF.Classes.DAO
 {
     [Serializable]
     internal class InsertPatientException : Exception

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using TPHopitalWpf.ViewModels;
+using TPHopitalWpfEF.ViewModels;
 
-namespace TPHopitalWpf.Views
+namespace TPHopitalWpfEF.Views
 {
     /// <summary>
     /// Logique d'interaction pour MedecinsWindow.xaml
@@ -13,8 +13,7 @@ namespace TPHopitalWpf.Views
             InitializeComponent();
             DataContext = new MedecinsViewModel();
         }
-        
-       
 
+        
     }
 }

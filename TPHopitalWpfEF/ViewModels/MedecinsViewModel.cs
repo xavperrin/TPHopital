@@ -2,11 +2,12 @@
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
-using TPHopitalWpf.Classes;
-using TPHopitalWpf.Classes.DAO;
+using TPHopitalWpfEF.Classes;
+using TPHopitalWpfEF.Classes.DAO;
 
-namespace TPHopitalWpf.ViewModels
+namespace TPHopitalWpfEF.ViewModels
 {
     public class MedecinsViewModel : ViewModelBase
     {
@@ -63,13 +64,19 @@ namespace TPHopitalWpf.ViewModels
         public MedecinsViewModel()
         {
             medecin = new Medecin();
-            dao = new MedecinDAO();
-            listeMedecins = new ObservableCollection<Medecin>(dao.ListAll());
+            try
+            {
+                listeMedecins = new ObservableCollection<Medecin>(dao.ListAll());
+            }
+            catch (NullReferenceException e)
+            {
+                MessageBox.Show(e.Message);
+            }
             AddCommand = new RelayCommand(AddMedecin);//Action
-            EditCommand = new RelayCommand(UpdateMedecin);
+            EditCommand = new RelayCommand(EditMedecin);
         }
 
-        private void UpdateMedecin()
+        private void EditMedecin()
         {
             Nom_Medecin = medecinSelected.Nom_medecin;
             Prenom_Medecin = medecinSelected.Prenom_medecin;

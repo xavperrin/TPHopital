@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
-using TPHopitalWpf.Classes.Traitements;
+using TPHopitalWpfEF.Classes.Traitements;
 
-namespace TPHopitalWpf.Classes.DAO
+namespace TPHopitalWpfEF.Classes.DAO
 {
     class ChirurgieDAO : TraitementDAO, IDAO<Chirurgie, int>
     {

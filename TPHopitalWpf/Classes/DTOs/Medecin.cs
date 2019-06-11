@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using TPHopitalWpf.Classes.DTOs;
+using TPHopitalWpfEF.Classes.DTOs;
 
-namespace TPHopitalWpf.Classes
+namespace TPHopitalWpfEF.Classes
 {
     public class Medecin : DTO
     {

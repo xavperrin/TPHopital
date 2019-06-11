@@ -63,7 +63,7 @@ namespace UnitTestProject1
         {
 
             // Finds an medecin with a unknown identifier
-            int id = _dao.getUniqueId();
+            int id = _dao.GetUniqueId();
             string message;
             try
             {
@@ -105,7 +105,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestFindAllCategories()
         {
-            int id = _dao.getUniqueId();
+            int id = _dao.GetUniqueId();
 
             // First findAll
             int firstSize = FindAllMedecins();
@@ -162,7 +162,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestCreateMedecin()
         {
-            int id = _dao.getUniqueId();
+            int id = _dao.GetUniqueId();
             Medecin medecin = null;
 
             // Ensures that the object doesn't exist

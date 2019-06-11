@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
-using TPHopitalWpf.Classes.DTOs;
+using TPHopitalWpfEF.Classes.DTOs;
 using System.Threading.Tasks;
 
-namespace TPHopitalWpf.Classes.DAO
+namespace TPHopitalWpfEF.Classes.DAO
 {
     public class ConsultationDAO : IDAO<Consultation, int>
     {

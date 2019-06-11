@@ -4,11 +4,11 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-using TPHopitalWpf.Classes;
-using TPHopitalWpf.Classes.DAO;
+using TPHopitalWpfEF.Classes;
+using TPHopitalWpfEF.Classes.DAO;
 
 
-namespace TPHopitalWpf.ViewModels
+namespace TPHopitalWpfEF.ViewModels
 {
     public class MedecinsViewModel : ViewModelBase
     {
@@ -66,7 +66,13 @@ namespace TPHopitalWpf.ViewModels
         {
             medecin = new Medecin();
             dao = new MedecinDAO();
-            listeMedecins = new ObservableCollection<Medecin>(dao.ListAll());
+            try {
+                listeMedecins = new ObservableCollection<Medecin>(dao.ListAll());
+            }
+            catch (ObjectNotFoundException e)
+            {
+                MessageBox.Show(e.Message);
+            }
             AddCommand = new RelayCommand(AddMedecin);//Action
             EditCommand = new RelayCommand(EditMedecin);
         }

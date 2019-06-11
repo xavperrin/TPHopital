@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TPHopitalWpf.Classes.DTOs;
+using TPHopitalWpfEF.Classes.DTOs;
 
-namespace TPHopitalWpf.Classes
+namespace TPHopitalWpfEF.Classes
 {
     public class Hospitalisation:DTO
     {

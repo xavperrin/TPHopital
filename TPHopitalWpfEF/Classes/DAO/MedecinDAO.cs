@@ -4,10 +4,10 @@ using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Text;
-using TPHopitalWpf.Classes.Exceptions;
+using TPHopitalWpfEF.Classes.Exceptions;
 
 
-namespace TPHopitalWpf.Classes.DAO
+namespace TPHopitalWpfEF.Classes.DAO
 {
     public class MedecinDAO : IDAO<Medecin, int>
     {

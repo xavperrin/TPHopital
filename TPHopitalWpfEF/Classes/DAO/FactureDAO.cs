@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
-using TPHopitalWpf.Classes.DTOs;
+using TPHopitalWpfEF.Classes.DTOs;
 
-namespace TPHopitalWpf.Classes.DAO
+namespace TPHopitalWpfEF.Classes.DAO
 {
     public class FactureDAO : IDAO<Facture, Int32>
     {

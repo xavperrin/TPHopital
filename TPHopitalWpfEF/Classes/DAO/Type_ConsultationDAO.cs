@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace TPHopitalWpf.Classes.DAO
+namespace TPHopitalWpfEF.Classes.DAO
 {
     public class Type_ConsultationDAO : IDAO<Type_Consultation, Int32>
     {

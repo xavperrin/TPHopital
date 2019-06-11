@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TPHopitalWpf.Classes.DAO;
-using TPHopitalWpf.Classes.DTOs;
-using TPHopitalWpf.Classes.Traitements;
+using TPHopitalWpfEF.Classes.DAO;
+using TPHopitalWpfEF.Classes.DTOs;
+using TPHopitalWpfEF.Classes.Traitements;
 
-namespace TPHopitalWpf.Classes.Facades
+namespace TPHopitalWpfEF.Classes.Facades
 {
     
     public static class FacadeMetier

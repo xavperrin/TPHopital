@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TPHopitalWpf.Classes.DTOs
+namespace TPHopitalWpfEF.Classes.DTOs
 {
     public class Facture:DTO
     {

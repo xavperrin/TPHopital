@@ -4,8 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TPHopitalWpf.Classes;
-using TPHopitalWpf.Classes.DTOs;
+using TPHopitalWpfEF.Classes;
+using TPHopitalWpfEF.Classes.DTOs;
 
 namespace TPHopitalWpfEF.Tools
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace TPHopitalWpf.Classes.Exceptions
+namespace TPHopitalWpfEF.Classes.Exceptions
 {
     [Serializable]
     public class DataAccessException : Exception

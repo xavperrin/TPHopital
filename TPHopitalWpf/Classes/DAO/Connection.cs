@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace TPHopitalWpf.Classes.DAO
+namespace TPHopitalWpfEF.Classes.DAO
 {
     public class Connection
     {

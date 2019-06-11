@@ -99,7 +99,7 @@ namespace TPHopital.Classes.DAO
             return created;
         }
 
-        public int getUniqueId()
+        public int GetUniqueId()
         {
             Random random = new Random();
             return random.Next(1000, 90000);

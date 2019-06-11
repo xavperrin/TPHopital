@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using TPHopitalWpf.Classes.Traitements;
+using TPHopitalWpfEF.Classes.Traitements;
 
-namespace TPHopitalWpf.Classes.DAO
+namespace TPHopitalWpfEF.Classes.DAO
 {
     class Examen_BiologiqueDAO : TraitementDAO, IDAO<Examen_Biologique, Int32>
     {

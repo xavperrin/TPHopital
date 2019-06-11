@@ -1,9 +1,9 @@
-﻿<Window x:Class="TPHopitalWpf.Views.MedecinsWindow"
+﻿<Window x:Class="TPHopitalWpfEF.Views.MedecinsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TPHopitalWpf.Views"
+        xmlns:local="clr-namespace:TPHopitalWpfEF.Views"
         mc:Ignorable="d"
         Title="MedecinsWindow" Height="450" Width="800">
     <Grid>
@@ -22,7 +22,7 @@
         <TextBox Text="{Binding Prenom_Medecin}" HorizontalAlignment="Left" Height="26" Margin="157,83,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140"/>
         <Label Content="Telephone : " HorizontalAlignment="Left" Margin="27,133,0,0" VerticalAlignment="Top"/>
         <TextBox Text="{Binding Tel_Medecin}" HorizontalAlignment="Left" Height="26" Margin="157,133,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140"/>
-        <Button Content="Ajouter" Command="{Binding AddCommand}" HorizontalAlignment="Left" Margin="10,357,0,0" VerticalAlignment="Top" Width="140" Height="40"/>
+        <Button Content="Ajouter" Command="{Binding AddCommand}" HorizontalAlignment="Left" Margin="10,357,0,0" VerticalAlignment="Top" Width="140" Height="40" />
         <Button Content="Modifier" Command="{Binding EditCommand}" HorizontalAlignment="Left" Margin="186,357,0,0" VerticalAlignment="Top" Width="140" Height="40"/>
         <Button Content="Supprimer" Command="{Binding DeleteCommand}" HorizontalAlignment="Left" Margin="361,357,0,0" VerticalAlignment="Top" Width="140" Height="40"/>
         <Button Content="Consultation" HorizontalAlignment="Left" Margin="540,357,0,0" VerticalAlignment="Top" Width="140" Height="40" />
