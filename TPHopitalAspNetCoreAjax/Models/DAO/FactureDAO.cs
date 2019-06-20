@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
-using TPHopital.Classes.DTOs;
 
-namespace TPHopital.Classes.DAO
+namespace TPHopitalAspNetCoreAjax.Models.DAO
 {
     public class FactureDAO : IDAO<Facture, Int32>
     {

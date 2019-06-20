@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using TPHopital.Classes.Traitements;
+using TPHopitalAspNetCoreAjax.Models.Traitements;
 
-namespace TPHopital.Classes.DAO
+namespace TPHopitalAspNetCoreAjax.Models.DAO
 {
     class Examen_BiologiqueDAO : TraitementDAO, IDAO<Examen_Biologique, Int32>
     {
@@ -81,15 +80,13 @@ namespace TPHopital.Classes.DAO
 
             if (reader.Read())
             {
-                examen = new Examen_Biologique()
-                {
-                    Id_traitement = reader.GetInt32(0),
-                    Date_traitement = reader.GetDateTime(1),
-                    Prix_traitement = reader.GetDecimal(2),
-                    Designation = reader.GetString(3),
-                    Resultat_examen = reader.GetString(4),
-                    Facture_id = reader.GetInt32(5)
-                };
+                examen = new Examen_Biologique();
+                examen.Id_traitement = reader.GetInt32(0);
+                examen.Date_traitement = reader.GetDateTime(1);
+                examen.Prix_traitement = reader.GetDecimal(2);
+                examen.Designation = reader.GetString(3);
+                examen.Resultat_examen = reader.GetString(4);
+                examen.Facture_id = reader.GetInt32(5);
             }
 
             reader.Close();

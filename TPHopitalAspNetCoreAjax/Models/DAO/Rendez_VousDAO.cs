@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
+using TPHopitalAspNetCoreAjax.Models;
 
-namespace TPHopital.Classes.DAO
+namespace TPHopitalAspNetCoreAjax.Models.DAO
 {
     public class Rendez_VousDAO : IDAO<Rendez_Vous, Int32>
     {
@@ -15,7 +16,7 @@ namespace TPHopital.Classes.DAO
         private SqlConnection connection;
 
         private readonly string TABLE="Rendez_Vous";
-        private string COLUMNS = "codeRDV, medecin, date_RDV, service, patient_ID"; 
+        private readonly string COLUMNS = "codeRDV, medecin, date_RDV, service, patient_ID"; 
 
         public Rendez_VousDAO()
         {
