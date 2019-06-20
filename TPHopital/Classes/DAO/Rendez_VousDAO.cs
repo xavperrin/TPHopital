@@ -15,7 +15,7 @@ namespace TPHopital.Classes.DAO
         private SqlConnection connection;
 
         private readonly string TABLE="Rendez_Vous";
-        private string COLUMNS = "codeRDV, medecin, date_RDV, service, patient_ID"; 
+        private readonly string COLUMNS = "codeRDV, medecin, date_RDV, service, patient_ID"; 
 
         public Rendez_VousDAO()
         {

@@ -80,13 +80,15 @@ namespace TPHopitalAspNetCoreAjax.Models.DAO
 
             if (reader.Read())
             {
-                examen = new Examen_Biologique();
-                examen.Id_traitement = reader.GetInt32(0);
-                examen.Date_traitement = reader.GetDateTime(1);
-                examen.Prix_traitement = reader.GetDecimal(2);
-                examen.Designation = reader.GetString(3);
-                examen.Resultat_examen = reader.GetString(4);
-                examen.Facture_id = reader.GetInt32(5);
+                examen = new Examen_Biologique
+                {
+                    Id_traitement = reader.GetInt32(0),
+                    Date_traitement = reader.GetDateTime(1),
+                    Prix_traitement = reader.GetDecimal(2),
+                    Designation = reader.GetString(3),
+                    Resultat_examen = reader.GetString(4),
+                    Facture_id = reader.GetInt32(5)
+                };
             }
 
             reader.Close();

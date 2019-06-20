@@ -125,13 +125,15 @@ namespace TPHopitalAspNetCoreAjax.Models.DAO
 
                     if (reader.Read())
                     {
-                        chirurgie = new Chirurgie();
-                        chirurgie.Id_traitement = reader.GetInt32(0);
-                        chirurgie.Date_traitement = reader.GetDateTime(1);
-                        chirurgie.Prix_traitement = reader.GetDecimal(2);
-                        chirurgie.Chirurgien = reader.GetString(3);
-                        chirurgie.Anesthesiste = reader.GetString(4);
-                        chirurgie.Facture_id = reader.GetInt32(5);
+                        chirurgie = new Chirurgie
+                        {
+                            Id_traitement = reader.GetInt32(0),
+                            Date_traitement = reader.GetDateTime(1),
+                            Prix_traitement = reader.GetDecimal(2),
+                            Chirurgien = reader.GetString(3),
+                            Anesthesiste = reader.GetString(4),
+                            Facture_id = reader.GetInt32(5)
+                        };
                     }
 
                     reader.Close();

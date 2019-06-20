@@ -111,24 +111,26 @@ namespace TPHopital.Classes.DAO
 
             if (reader.Read())
             {
-                hospitalisation = new Hospitalisation();
-                hospitalisation.Id_admission = reader.GetInt32(0);
-                hospitalisation.Date_admission = reader.GetDateTime(1);
-                hospitalisation.Type_admission = reader.GetString(2);
-                hospitalisation.Motif_admission = reader.GetString(3);
-                hospitalisation.Medecin_traitant = reader.GetString(4);
-                hospitalisation.Nom_accompagnant = reader.GetString(5);
-                hospitalisation.Prenom_accompagnant = reader.GetString(6);
-                hospitalisation.Lien_parente = reader.GetString(7);
-                hospitalisation.Date_entreeAcc = reader.GetDateTime(8);
-                hospitalisation.Date_sortieAcc = reader.GetDateTime(9);
-                hospitalisation.Date_sortie = reader.GetDateTime(10);
-                hospitalisation.Motif_sortie = reader.GetString(11);
-                hospitalisation.Resultat_sortie = reader.GetString(12);
-                hospitalisation.Date_deces = reader.GetDateTime(13);
-                hospitalisation.Motif_deces = reader.GetString(14);
-                hospitalisation.Patient_id = reader.GetInt32(15);
-                hospitalisation.Traitement_id = reader.GetInt32(16);
+                hospitalisation = new Hospitalisation
+                {
+                    Id_admission = reader.GetInt32(0),
+                    Date_admission = reader.GetDateTime(1),
+                    Type_admission = reader.GetString(2),
+                    Motif_admission = reader.GetString(3),
+                    Medecin_traitant = reader.GetString(4),
+                    Nom_accompagnant = reader.GetString(5),
+                    Prenom_accompagnant = reader.GetString(6),
+                    Lien_parente = reader.GetString(7),
+                    Date_entreeAcc = reader.GetDateTime(8),
+                    Date_sortieAcc = reader.GetDateTime(9),
+                    Date_sortie = reader.GetDateTime(10),
+                    Motif_sortie = reader.GetString(11),
+                    Resultat_sortie = reader.GetString(12),
+                    Date_deces = reader.GetDateTime(13),
+                    Motif_deces = reader.GetString(14),
+                    Patient_id = reader.GetInt32(15),
+                    Traitement_id = reader.GetInt32(16)
+                };
             }
             else
                 throw new ObjectNotFoundException("Aucun hospitalisation n'a été trouvé avec l'identifiant " + id);
